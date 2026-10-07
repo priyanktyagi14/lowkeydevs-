@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Labs - Lowkeydevs" currentPage="labs">
+  <main class="relative z-10 pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1440px] mx-auto w-full flex-grow">
+    <!-- Header Section -->
+    <header class="mb-14 md:mb-18 max-w-3xl pt-4">
+      <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC] mb-5 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-[#7C4DFF]"></span>
+        <span class="tracking-widest uppercase text-[10px] text-pastel-primary dark:text-[#8F66FF] font-medium">Experimental Research</span>
+      </div>
+      <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-light text-pastel-text-title dark:text-[#F5F2FC] leading-[1.12] tracking-tight mb-5">
+        The <span class="font-normal text-[#7C4DFF] dark:text-[#8F66FF]">Laboratory</span> of future ideas.
+      </h1>
+      <p class="hero-text text-sm sm:text-base font-light text-pastel-text-body dark:text-[#BDB6D4] max-w-2xl leading-relaxed">
+        A space where we explore new technologies, push boundaries, and prototype concepts that might one day become fully-fledged products. Welcome to the bleeding edge.
+      </p>
+    </header>
+
+    <!-- Bento Grid / Cards Section -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+      <!-- Featured Lab Project -->
+      <div class="gsap-bento-item col-span-1 md:col-span-8 bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] rounded-[8px] p-7 md:p-9 relative overflow-hidden flex flex-col justify-between min-h-[420px] shadow-pastel-card hover:shadow-pastel-card-hover transition-all duration-300">
+        <div class="relative z-10 flex justify-between items-start w-full">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-[4px] bg-[#EDE7FB] dark:bg-[#261B48] border border-[#E2DCED] dark:border-[#382B61]">
+            <span class="material-symbols-outlined text-[14px] text-pastel-primary dark:text-[#A78BFA]">psychology</span>
+            <span class="text-[10px] font-medium uppercase tracking-widest text-pastel-primary dark:text-[#A78BFA]">AI Agent</span>
+          </div>
+          <span class="text-xs font-medium text-pastel-primary dark:text-[#A78BFA] bg-[#EDE7FB] dark:bg-[#261B48] px-2.5 py-0.5 rounded-[4px]">Active Prototype</span>
+        </div>
+        
+        <div class="relative z-10 mt-auto pt-16">
+          <div class="text-[11px] font-medium text-[#7C4DFF] dark:text-[#8F66FF] tracking-widest uppercase mb-1">Concept 01</div>
+          <h2 class="text-2xl md:text-3xl font-light text-pastel-text-title dark:text-[#F5F2FC] mb-2 tracking-tight">Project Sentinel</h2>
+          <p class="text-xs sm:text-sm font-light text-pastel-text-body dark:text-[#BDB6D4] mb-6 max-w-xl leading-relaxed">
+            An autonomous context-aware development assistant designed to predict codebase architecture needs and automate deep refactoring pipelines in real-time.
+          </p>
+          <a class="inline-flex items-center gap-1.5 text-xs font-medium text-pastel-primary dark:text-[#8F66FF] hover:text-pastel-primary-dark dark:hover:text-[#A78BFA] transition-colors group" href="/contact">
+            <span>Explore Concept</span>
+            <span class="material-symbols-outlined text-[15px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Coming Soon Card 1: OmniUI -->
+      <div class="gsap-bento-item col-span-1 md:col-span-4 bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] rounded-[8px] p-7 md:p-8 flex flex-col justify-between shadow-pastel-card hover:shadow-pastel-card-hover transition-all duration-300 group">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-[#E1F1FD] dark:bg-[#122A42] border border-[#E2DCED] dark:border-[#1E3A5F] mb-6">
+            <span class="material-symbols-outlined text-[13px] text-[#0284C7] dark:text-[#38BDF8]">hourglass_empty</span>
+            <span class="text-[10px] font-medium uppercase tracking-widest text-[#0284C7] dark:text-[#38BDF8]">Incubating</span>
+          </div>
+          <h3 class="text-lg md:text-xl font-medium text-pastel-text-title dark:text-[#F5F2FC] mb-2 tracking-tight">OmniUI Framework</h3>
+          <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+            A generative design system component library and token compiler built on top of high-performance rendering engines.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-[#E2DCED] dark:border-[#261F3D] flex justify-between items-center">
+          <span class="text-[10px] font-medium text-pastel-text-muted dark:text-[#7E7699] uppercase tracking-widest">Status</span>
+          <span class="text-xs font-medium text-pastel-primary dark:text-[#8F66FF]">Alpha Testing</span>
+        </div>
+      </div>
+
+      <!-- Coming Soon Card 2: Nexus Engine -->
+      <div class="gsap-bento-item col-span-1 md:col-span-4 bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] rounded-[8px] p-7 md:p-8 flex flex-col justify-between shadow-pastel-card hover:shadow-pastel-card-hover transition-all duration-300 group">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-[#E0F6F2] dark:bg-[#133033] border border-[#E2DCED] dark:border-[#1D4A4F] mb-6">
+            <span class="material-symbols-outlined text-[13px] text-[#0D9488] dark:text-[#2DD4BF]">data_object</span>
+            <span class="text-[10px] font-medium uppercase tracking-widest text-[#0D9488] dark:text-[#2DD4BF]">Research</span>
+          </div>
+          <h3 class="text-lg md:text-xl font-medium text-pastel-text-title dark:text-[#F5F2FC] mb-2 tracking-tight">Nexus Engine</h3>
+          <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+            High-performance WebGL &amp; WebGPU rendering wrapper for modern reactive web applications and generative canvases.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-[#E2DCED] dark:border-[#261F3D] flex justify-between items-center">
+          <span class="text-[10px] font-medium text-pastel-text-muted dark:text-[#7E7699] uppercase tracking-widest">Status</span>
+          <span class="text-xs font-medium text-pastel-primary dark:text-[#8F66FF]">Q4 2026</span>
+        </div>
+      </div>
+
+      <!-- Conceptual Card: Co-development -->
+      <div class="gsap-bento-item col-span-1 md:col-span-8 bg-[#EDE8F5] dark:bg-[#161030] border border-[#E2DCED] dark:border-[#261F3D] rounded-[8px] p-7 md:p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-pastel-card transition-colors duration-200">
+        <div class="max-w-lg">
+          <div class="text-[10px] font-medium text-[#7C4DFF] dark:text-[#8F66FF] tracking-widest uppercase mb-1">Collaboration</div>
+          <h3 class="text-xl md:text-2xl font-light text-pastel-text-title dark:text-[#F5F2FC] mb-2 tracking-tight">Have a wild idea?</h3>
+          <p class="text-xs sm:text-sm font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+            We partner with ambitious founders to co-develop experimental platforms. If it's technically challenging and pushes boundaries, we want to build it.
+          </p>
+        </div>
+        <a 
+          href="/contact" 
+          class="gsap-magnetic whitespace-nowrap inline-flex items-center gap-2 px-6 py-3 rounded-[6px] bg-[#7C4DFF] text-white hover:bg-[#6A3AE6] text-xs font-medium tracking-wide shadow-pastel-md transition-all"
+        >
+          <span>Pitch Idea</span>
+          <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

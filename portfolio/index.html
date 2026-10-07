@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Portfolio - Lowkeydevs</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#1c1a22",
+                        "on-primary-fixed-variant": "#4f00d0",
+                        "on-surface": "#e6e0ee",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#e8deff",
+                        "on-primary": "#370096",
+                        "on-tertiary-fixed": "#311300",
+                        "outline": "#948ea1",
+                        "surface-bright": "#2c2934",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#d4bbff",
+                        "on-primary-fixed": "#20005f",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#fff7f4",
+                        "on-error": "#690005",
+                        "text-secondary": "#A3A3A3",
+                        "secondary": "#ebd6ff",
+                        "on-secondary-fixed-variant": "#561bb8",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed": "#eaddff",
+                        "primary-container": "#8C52FF",
+                        "outline-variant": "#494455",
+                        "primary-fixed-dim": "#e1ccff",
+                        "on-surface-variant": "#cac3d8",
+                        "text-muted": "#737373",
+                        "on-secondary-fixed": "#24005b",
+                        "surface-container-highest": "#282530",
+                        "card": "#131313",
+                        "surface-container-high": "#201d26",
+                        "text-primary": "#FFFFFF",
+                        "secondary-container": "#561bb8",
+                        "on-tertiary": "#512400",
+                        "inverse-on-surface": "#322f3a",
+                        "tertiary-container": "#b55800",
+                        "surface-container-lowest": "#0b0a0f",
+                        "on-primary-container": "#fcf6ff",
+                        "secondary-fixed-dim": "#ebd6ff",
+                        "surface-dim": "#121018",
+                        "surface-container": "#18161f",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "surface-container-low": "#15131a",
+                        "surface-tint": "#e1ccff",
+                        "border": "rgba(255, 255, 255, 0.08)",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "background": "#0D0D0D",
+                        "tertiary": "#ffb688",
+                        "on-secondary-container": "#c2a7ff",
+                        "on-background": "#e6e0ee",
+                        "inverse-surface": "#e6e0ee",
+                        "on-secondary": "#3d008f",
+                        "inverse-primary": "#6833ea",
+                        "surface": "#141414"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        sm: "0.125rem",
+                        md: "0.375rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        "label-caps": ["Poppins", "sans-serif"],
+                        "display-lg-mobile": ["Poppins", "sans-serif"],
+                        "body-md": ["Poppins", "sans-serif"],
+                        "headline-sm": ["Poppins", "sans-serif"],
+                        "display-lg": ["Poppins", "sans-serif"],
+                        "headline-md": ["Poppins", "sans-serif"],
+                        "body-lg": ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .bg-grid {
+            background-size: 32px 32px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75vw;
+            height: 75vw;
+            max-width: 750px;
+            max-height: 750px;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.16) 0%, rgba(13, 13, 13, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(100px);
+        }
+        
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -15%;
+            right: -10%;
+            width: 55vw;
+            height: 55vw;
+            max-width: 550px;
+            max-height: 550px;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.1) 0%, rgba(13, 13, 13, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(90px);
+        }
+
+        /* Sharp Card Hover Effects */
+        .project-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            background: #131313;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(140, 82, 255, 0.45);
+            box-shadow: 0 20px 40px -15px rgba(140, 82, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+        
+        .project-card:hover .arrow-icon {
+            transform: translate(2px, -2px);
+            color: #ffffff;
+            border-color: rgba(140, 82, 255, 0.6);
+            background-color: #8C52FF;
+        }
+
+        .project-image {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+            filter: grayscale(15%);
+        }
+        
+        .arrow-icon {
+            transition: all 0.25s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary antialiased bg-grid min-h-screen flex flex-col font-light">
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0D0D0D]/80 backdrop-blur-md border-b border-white/[0.06] transition-all duration-300">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2.5 cursor-pointer z-50 group">
+                <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                    <path d="
+                      M0 0
+                      L80 0
+                      L100 75
+                      L120 150
+                      L200 150
+                      L180 75
+                      L100 75
+                      L20 75
+                      Z
+                    " fill="#8C52FF"></path>
+                </svg>
+                <span class="font-normal text-lg tracking-tight text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-light">
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                <a class="text-white font-normal relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#8C52FF] after:rounded-full" href="index.html">Portfolio</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../labs/index.html">Labs</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../contact/index.html">Contact</a>
+            </div>
+            
+            <div class="hidden md:block">
+                <a href="../contact/index.html" class="flex items-center gap-2 px-5 py-2 rounded-[4px] border border-white/15 text-white/90 hover:text-white hover:bg-white/[0.05] hover:border-primary-container text-xs font-light tracking-wide transition-all duration-200 group">
+                    <span>Let's Build</span>
+                    <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="md:hidden text-text-primary z-50 p-2 focus:outline-none">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu-drawer" class="fixed inset-0 bg-[#0D0D0D] z-45 translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center px-8 space-y-6 text-xl font-light">
+            <a class="text-white/70 hover:text-white transition-colors" href="../index.html">Home</a>
+            <a class="text-white hover:text-primary transition-colors" href="index.html">Portfolio</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../labs/index.html">Labs</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../contact/index.html">Contact</a>
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-[4px] border border-white/15 text-white hover:bg-surface-variant w-fit text-sm font-light mt-4">
+                Let's Build
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Canvas -->
+    <main class="flex-grow pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 relative z-10 w-full max-w-[1440px] mx-auto">
+        <!-- Header -->
+        <header class="mb-16 md:mb-20 max-w-3xl pt-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[3px] bg-white/[0.03] border border-white/10 text-xs font-light text-white/70 mb-5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#8C52FF]"></span>
+                <span class="tracking-widest uppercase text-[10px]">Curated Portfolio</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extralight text-white leading-[1.12] tracking-tight mb-5">
+                Crafting digital <br/><span class="font-light text-transparent bg-clip-text bg-gradient-to-r from-[#e8deff] via-[#b688ff] to-[#8C52FF]">experiences</span>.
+            </h1>
+            <p class="text-sm sm:text-base font-light text-white/60 max-w-2xl leading-relaxed">
+                A curated selection of our recent projects, spanning AI products, SaaS platforms, and digital brand experiences for ambitious companies.
+            </p>
+        </header>
+
+        <!-- Project Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+            <!-- Project 1 -->
+            <a class="project-card block overflow-hidden group" href="../project-detail/index.html">
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#0B0A0F] border-b border-white/[0.06]">
+                    <img class="w-full h-full object-cover project-image" data-alt="AI Product visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm1kC8j57ukPdlbjurnyXAD9-DftegouRLdV4C9aWsn3-I0gO3G3NPOv-kSNwg5pznkR5Mj-cBtLo3ykubY0H44oAxruVNqoWdRYtoeRw4QzhrF6CNObo46gOx5hjZN3G7yJmCXLSr4jL80JalgROQXQFVqowmFhA03_CMZnZU0F9V2RMOgvJqv6OOfmJeD539N76Sap-3Cc3OcicdqWeHHXF7r0rHSzMSbLoo25ZgxF2vd1y_KHmaNw"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#131313]/90 via-[#131313]/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70 uppercase">AI Product</span>
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70">2024</span>
+                    </div>
+                    <div class="absolute top-4 right-4 w-8 h-8 rounded-[4px] bg-[#0D0D0D]/70 backdrop-blur-md border border-white/10 flex items-center justify-center arrow-icon">
+                        <span class="material-symbols-outlined text-white/70 text-[16px]">arrow_outward</span>
+                    </div>
+                </div>
+                <div class="p-6 md:p-8 flex justify-between items-end">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-normal text-white mb-1.5 group-hover:text-primary transition-colors tracking-tight">Nebula Engine</h3>
+                        <p class="text-xs font-light text-white/50">Next-gen AI analytics &amp; orchestration platform</p>
+                    </div>
+                    <div class="text-xs font-extralight tracking-widest text-white/40">01</div>
+                </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a class="project-card block overflow-hidden group md:mt-16" href="../project-detail/index.html">
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#0B0A0F] border-b border-white/[0.06]">
+                    <img class="w-full h-full object-cover project-image" data-alt="SaaS Platform 3D architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAue_jGFNQuErsy2WD_4a5ptn9sRmrrEW-k85sZiDJFm9z2kTEecOvq3Ecs3EJ9r0WT-sz70n2XLwlilANeGVMVslZmle31UWLtXW-Y4KztG17TiCOphrf0wKt_rxNgI6tRWWTNMpYc0SEgh-C5MCbctlbGEFR_93avdOdOqOiRRrLYomEAkdPP2ciH5XAgJxQ50rh7Kw0YyKrCjcJk17ZppS5kQslpXjgtMCohBauknXlbuEfZBbXfWw"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#131313]/90 via-[#131313]/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70 uppercase">SaaS Platform</span>
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70">2024</span>
+                    </div>
+                    <div class="absolute top-4 right-4 w-8 h-8 rounded-[4px] bg-[#0D0D0D]/70 backdrop-blur-md border border-white/10 flex items-center justify-center arrow-icon">
+                        <span class="material-symbols-outlined text-white/70 text-[16px]">arrow_outward</span>
+                    </div>
+                </div>
+                <div class="p-6 md:p-8 flex justify-between items-end">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-normal text-white mb-1.5 group-hover:text-primary transition-colors tracking-tight">Echo Protocol</h3>
+                        <p class="text-xs font-light text-white/50">Real-time collaboration and telemetry suite</p>
+                    </div>
+                    <div class="text-xs font-extralight tracking-widest text-white/40">02</div>
+                </div>
+            </a>
+
+            <!-- Project 3 -->
+            <a class="project-card block overflow-hidden group" href="../project-detail/index.html">
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#0B0A0F] border-b border-white/[0.06]">
+                    <img class="w-full h-full object-cover project-image" data-alt="Minimalist technical wireframe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCUIeVQ7LDmceTkQv2yLzvkpL66qT6AXp4ZjvZwferssalyWTgCllDv9hxAMzOhlMRh2hLFOGoWvZKubG9UmjnrbBhVX_18KW50ewBPSWHfN7yV_dhiX2aBcfKXXiMiC1myAcnq-5CEkpVneTyz7tQ_J1ieaoyR93A8X3Bp9yGajT3yNNNZHPxmwOUUOWS4-3avbb3sg865yXvOor9Tj98reTKWq1qV2QbN2k8fEYK5XJVbJC2uyil7Q"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#131313]/90 via-[#131313]/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70 uppercase">Web App</span>
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70">2025</span>
+                    </div>
+                    <div class="absolute top-4 right-4 w-8 h-8 rounded-[4px] bg-[#0D0D0D]/70 backdrop-blur-md border border-white/10 flex items-center justify-center arrow-icon">
+                        <span class="material-symbols-outlined text-white/70 text-[16px]">arrow_outward</span>
+                    </div>
+                </div>
+                <div class="p-6 md:p-8 flex justify-between items-end">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-normal text-white mb-1.5 group-hover:text-primary transition-colors tracking-tight">Lumen Systems</h3>
+                        <p class="text-xs font-light text-white/50">Modern developer tooling &amp; cloud infrastructure</p>
+                    </div>
+                    <div class="text-xs font-extralight tracking-widest text-white/40">03</div>
+                </div>
+            </a>
+
+            <!-- Project 4 -->
+            <a class="project-card block overflow-hidden group md:mt-16" href="../project-detail/index.html">
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#0B0A0F] border-b border-white/[0.06]">
+                    <img alt="Flow Studio Project" class="w-full h-full object-cover project-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkqGJFSvOVPCpzVBBtelG7SwHb28_2VpQyumyqzOj3Sbk31n-GC_hJDUeV5tdsCzK5MZTwLW6dwex2H6lZgY4Pv9HdX-SRxqAL-1iloUw_yHq791IMQ14jezl635NG-J2Vk0Kblc2GLu53y_rPE2YwsHGYnPEF2iYTvgHjVoiOJrB5x5BxGXt6hpJalkYPlWWj8zYj22qBgjcm2C7ljgffDFzYDPn53jTIPbMFycWaoB8c90KKv0zzA3qxf6NFd6VshKo"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#131313]/90 via-[#131313]/20 to-transparent"></div>
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70 uppercase">Brand &amp; Web</span>
+                        <span class="px-2.5 py-1 rounded-[3px] bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-light tracking-wider text-white/70">2024</span>
+                    </div>
+                    <div class="absolute top-4 right-4 w-8 h-8 rounded-[4px] bg-[#0D0D0D]/70 backdrop-blur-md border border-white/10 flex items-center justify-center arrow-icon">
+                        <span class="material-symbols-outlined text-white/70 text-[16px]">arrow_outward</span>
+                    </div>
+                </div>
+                <div class="p-6 md:p-8 flex justify-between items-end">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-normal text-white mb-1.5 group-hover:text-primary transition-colors tracking-tight">Flow Creative</h3>
+                        <p class="text-xs font-light text-white/50">Cinematic digital design experience &amp; platform</p>
+                    </div>
+                    <div class="text-xs font-extralight tracking-widest text-white/40">04</div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B0B0B] border-t border-white/[0.06] mt-auto relative z-20">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-14 md:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="col-span-1 md:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <a href="../index.html" class="flex items-center gap-2.5 mb-3 cursor-pointer group">
+                            <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                                <path d="
+                                  M0 0
+                                  L80 0
+                                  L100 75
+                                  L120 150
+                                  L200 150
+                                  L180 75
+                                  L100 75
+                                  L20 75
+                                  Z
+                                " fill="#8C52FF"></path>
+                            </svg>
+                            <span class="font-normal text-base text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+                        </a>
+                        <p class="text-xs font-light text-white/50 max-w-sm leading-relaxed">
+                            Crafting premium software, AI solutions and digital experiences for high-growth teams worldwide.
+                        </p>
+                    </div>
+                    <p class="text-[11px] font-extralight text-white/40 mt-8 md:mt-0">
+                        &copy; 2026 Lowkeydevs. All rights reserved.
+                    </p>
+                </div>
+                
+                <div class="col-span-1 md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Navigation</h4>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                        <a class="text-xs font-light text-primary hover:text-white transition-colors duration-200" href="index.html">Portfolio</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../labs/index.html">Labs</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Connect</h4>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../contact/index.html">Contact</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">Twitter</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">LinkedIn</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Studio</h4>
+                        <span class="text-xs font-light text-white/50">Los Angeles, CA</span>
+                        <span class="text-xs font-light text-white/50">hello@lowkeydevs.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        let mobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                mobileMenuDrawer.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">close</span>';
+            } else {
+                mobileMenuDrawer.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">menu</span>';
+            }
+        });
+    </script>
+</body>
+</html>

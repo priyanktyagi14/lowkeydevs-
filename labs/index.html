@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Labs - Lowkeydevs</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#1c1a22",
+                        "on-primary-fixed-variant": "#4f00d0",
+                        "on-surface": "#e6e0ee",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#e8deff",
+                        "on-primary": "#370096",
+                        "on-tertiary-fixed": "#311300",
+                        "outline": "#948ea1",
+                        "surface-bright": "#2c2934",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#d4bbff",
+                        "on-primary-fixed": "#20005f",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#fff7f4",
+                        "on-error": "#690005",
+                        "text-secondary": "#A3A3A3",
+                        "secondary": "#ebd6ff",
+                        "on-secondary-fixed-variant": "#561bb8",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed": "#eaddff",
+                        "primary-container": "#8C52FF",
+                        "outline-variant": "#494455",
+                        "primary-fixed-dim": "#e1ccff",
+                        "on-surface-variant": "#cac3d8",
+                        "text-muted": "#737373",
+                        "on-secondary-fixed": "#24005b",
+                        "surface-container-highest": "#282530",
+                        "card": "#131313",
+                        "surface-container-high": "#201d26",
+                        "text-primary": "#FFFFFF",
+                        "secondary-container": "#561bb8",
+                        "on-tertiary": "#512400",
+                        "inverse-on-surface": "#322f3a",
+                        "tertiary-container": "#b55800",
+                        "surface-container-lowest": "#0b0a0f",
+                        "on-primary-container": "#fcf6ff",
+                        "secondary-fixed-dim": "#ebd6ff",
+                        "surface-dim": "#121018",
+                        "surface-container": "#18161f",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "surface-container-low": "#15131a",
+                        "surface-tint": "#e1ccff",
+                        "border": "rgba(255, 255, 255, 0.08)",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "background": "#0D0D0D",
+                        "tertiary": "#ffb688",
+                        "on-secondary-container": "#c2a7ff",
+                        "on-background": "#e6e0ee",
+                        "inverse-surface": "#e6e0ee",
+                        "on-secondary": "#3d008f",
+                        "inverse-primary": "#6833ea",
+                        "surface": "#141414"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        sm: "0.125rem",
+                        md: "0.375rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        "label-caps": ["Poppins", "sans-serif"],
+                        "display-lg-mobile": ["Poppins", "sans-serif"],
+                        "body-md": ["Poppins", "sans-serif"],
+                        "headline-sm": ["Poppins", "sans-serif"],
+                        "display-lg": ["Poppins", "sans-serif"],
+                        "headline-md": ["Poppins", "sans-serif"],
+                        "body-lg": ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .dotted-bg {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: center;
+        }
+
+        .hero-glow {
+            position: fixed;
+            top: -15%;
+            right: -10%;
+            width: 750px;
+            height: 750px;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.16) 0%, rgba(13, 13, 13, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(100px);
+        }
+
+        .card-hover-effect {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            background: #131313;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+        }
+
+        .card-hover-effect::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .card-hover-effect:hover {
+            box-shadow: 0 20px 40px -15px rgba(140, 82, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            border-color: rgba(140, 82, 255, 0.4);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative dotted-bg flex flex-col font-light">
+    <div class="hero-glow"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0D0D0D]/80 backdrop-blur-md border-b border-white/[0.06] transition-all duration-300">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2.5 cursor-pointer z-50 group">
+                <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                    <path d="
+                      M0 0
+                      L80 0
+                      L100 75
+                      L120 150
+                      L200 150
+                      L180 75
+                      L100 75
+                      L20 75
+                      Z
+                    " fill="#8C52FF"></path>
+                </svg>
+                <span class="font-normal text-lg tracking-tight text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-light">
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../portfolio/index.html">Portfolio</a>
+                <a class="text-white font-normal relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#8C52FF] after:rounded-full" href="index.html">Labs</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../contact/index.html">Contact</a>
+            </div>
+            
+            <div class="hidden md:block">
+                <a href="../contact/index.html" class="flex items-center gap-2 px-5 py-2 rounded-[4px] border border-white/15 text-white/90 hover:text-white hover:bg-white/[0.05] hover:border-primary-container text-xs font-light tracking-wide transition-all duration-200 group">
+                    <span>Let's Build</span>
+                    <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="md:hidden text-text-primary z-50 p-2 focus:outline-none">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu-drawer" class="fixed inset-0 bg-[#0D0D0D] z-45 translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center px-8 space-y-6 text-xl font-light">
+            <a class="text-white/70 hover:text-white transition-colors" href="../index.html">Home</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../portfolio/index.html">Portfolio</a>
+            <a class="text-white hover:text-primary transition-colors" href="index.html">Labs</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../contact/index.html">Contact</a>
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-[4px] border border-white/15 text-white hover:bg-surface-variant w-fit text-sm font-light mt-4">
+                Let's Build
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1440px] mx-auto w-full flex-grow">
+        <!-- Header Section -->
+        <header class="mb-16 md:mb-20 max-w-3xl pt-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[3px] bg-white/[0.03] border border-white/10 text-xs font-light text-white/70 mb-5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#8C52FF]"></span>
+                <span class="tracking-widest uppercase text-[10px]">Experimental Research</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extralight text-white leading-[1.12] tracking-tight mb-5">
+                The <span class="font-light text-transparent bg-clip-text bg-gradient-to-r from-[#e8deff] via-[#b688ff] to-[#8C52FF]">Laboratory</span> of future ideas.
+            </h1>
+            <p class="text-sm sm:text-base font-light text-white/60 max-w-2xl leading-relaxed">
+                A space where we explore new technologies, push boundaries, and prototype concepts that might one day become fully-fledged products. Welcome to the bleeding edge.
+            </p>
+        </header>
+
+        <!-- Bento Grid / Cards Section -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+            <!-- Featured Lab Project -->
+            <div class="col-span-1 md:col-span-8 bg-card border border-border rounded-[6px] p-7 md:p-9 relative overflow-hidden card-hover-effect flex flex-col justify-between min-h-[420px]">
+                <div class="absolute inset-0 opacity-25 pointer-events-none">
+                    <img class="w-full h-full object-cover" data-alt="Abstract 3D technological visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5WyK55AQU3XnE_xFvLQ7_HXGDB7ALuBWsSk_xgqbrz1JhKuAN2Y-UThDVF7hFoHDhpx-pSClFXSUxIQSUxk4u59seNhEVCk3xsCjRozB4kA6xcJsKKtiV7UKDmFIe6vVeDrGpfxZ6yCBmBGIuxuj9EtRXYafui7OV9ACbdD5ODJ7_4TWwJdP1033C4A2pveSHAbnHqhtbLjYi6h748DwPsgYBDVWjFKkyJ3uf3OsjSxxYQkxeG-OdA9moa7MAbs7x3NM"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#131313] via-[#131313]/70 to-transparent"></div>
+                </div>
+                
+                <div class="relative z-10 flex justify-between items-start w-full">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-white/[0.05] border border-white/10 backdrop-blur-md">
+                        <span class="material-symbols-outlined text-[13px] text-[#8C52FF]">psychology</span>
+                        <span class="text-[10px] font-light uppercase tracking-widest text-white/80">AI Agent</span>
+                    </div>
+                    <span class="text-xs font-light text-white/50">Prototyping</span>
+                </div>
+                
+                <div class="relative z-10 mt-auto pt-20">
+                    <div class="text-[11px] font-extralight text-[#8C52FF] tracking-widest uppercase mb-1">Concept 01</div>
+                    <h2 class="text-2xl md:text-3xl font-light text-white mb-2 tracking-tight">Project Sentinel</h2>
+                    <p class="text-xs sm:text-sm font-light text-white/60 mb-6 max-w-xl leading-relaxed">
+                        An autonomous context-aware development assistant designed to predict codebase architecture needs and automate deep refactoring pipelines.
+                    </p>
+                    <a class="inline-flex items-center gap-1.5 text-xs font-normal text-primary hover:text-white transition-colors group" href="#">
+                        <span>Explore Concept</span>
+                        <span class="material-symbols-outlined text-[15px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coming Soon Card 1 -->
+            <div class="col-span-1 md:col-span-4 bg-card border border-border rounded-[6px] p-7 md:p-8 flex flex-col justify-between card-hover-effect relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-36 h-36 bg-[#8C52FF]/10 blur-[50px] rounded-full pointer-events-none"></div>
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-white/[0.05] border border-white/10 mb-6">
+                        <span class="material-symbols-outlined text-[13px] text-white/60">hourglass_empty</span>
+                        <span class="text-[10px] font-light uppercase tracking-widest text-white/70">Incubating</span>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-normal text-white mb-2 tracking-tight">OmniUI Framework</h3>
+                    <p class="text-xs font-light text-white/50 leading-relaxed">
+                        A generative design system component library and token compiler built on top of high-performance rendering engines.
+                    </p>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/[0.06] flex justify-between items-center">
+                    <span class="text-[10px] font-extralight text-white/40 uppercase tracking-widest">Status</span>
+                    <span class="text-xs font-light text-white/70">Alpha Testing</span>
+                </div>
+            </div>
+
+            <!-- Coming Soon Card 2 -->
+            <div class="col-span-1 md:col-span-4 bg-card border border-border rounded-[6px] p-7 md:p-8 flex flex-col justify-between card-hover-effect relative overflow-hidden group">
+                <div class="absolute bottom-0 left-0 w-36 h-36 bg-[#8C52FF]/10 blur-[50px] rounded-full pointer-events-none"></div>
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-white/[0.05] border border-white/10 mb-6">
+                        <span class="material-symbols-outlined text-[13px] text-white/60">data_object</span>
+                        <span class="text-[10px] font-light uppercase tracking-widest text-white/70">Research</span>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-normal text-white mb-2 tracking-tight">Nexus Engine</h3>
+                    <p class="text-xs font-light text-white/50 leading-relaxed">
+                        High-performance WebGL &amp; WebGPU rendering wrapper for modern reactive web applications and generative canvases.
+                    </p>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/[0.06] flex justify-between items-center">
+                    <span class="text-[10px] font-extralight text-white/40 uppercase tracking-widest">Status</span>
+                    <span class="text-xs font-light text-white/70">Q4 2026</span>
+                </div>
+            </div>
+
+            <!-- Conceptual Card -->
+            <div class="col-span-1 md:col-span-8 bg-[#15131a] border border-border rounded-[6px] p-7 md:p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 card-hover-effect">
+                <div class="max-w-lg">
+                    <div class="text-[10px] font-extralight text-[#8C52FF] tracking-widest uppercase mb-1">Collaboration</div>
+                    <h3 class="text-xl md:text-2xl font-light text-white mb-2 tracking-tight">Have a wild idea?</h3>
+                    <p class="text-xs sm:text-sm font-light text-white/60 leading-relaxed">
+                        We partner with ambitious founders to co-develop experimental platforms. If it's technically challenging and pushes boundaries, we want to hear about it.
+                    </p>
+                </div>
+                <a class="px-6 py-3 rounded-[4px] bg-[#8C52FF] text-white hover:bg-[#7b40f2] transition-all duration-200 text-xs font-normal tracking-wide whitespace-nowrap shadow-[0_0_20px_rgba(140,82,255,0.3)] hover:shadow-[0_0_30px_rgba(140,82,255,0.5)]" href="../contact/index.html">
+                    Pitch a Lab Concept
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B0B0B] border-t border-white/[0.06] mt-auto relative z-20">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-14 md:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="col-span-1 md:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <a href="../index.html" class="flex items-center gap-2.5 mb-3 cursor-pointer group">
+                            <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                                <path d="
+                                  M0 0
+                                  L80 0
+                                  L100 75
+                                  L120 150
+                                  L200 150
+                                  L180 75
+                                  L100 75
+                                  L20 75
+                                  Z
+                                " fill="#8C52FF"></path>
+                            </svg>
+                            <span class="font-normal text-base text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+                        </a>
+                        <p class="text-xs font-light text-white/50 max-w-sm leading-relaxed">
+                            Crafting premium software, AI solutions and digital experiences for high-growth teams worldwide.
+                        </p>
+                    </div>
+                    <p class="text-[11px] font-extralight text-white/40 mt-8 md:mt-0">
+                        &copy; 2026 Lowkeydevs. All rights reserved.
+                    </p>
+                </div>
+                
+                <div class="col-span-1 md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Navigation</h4>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../portfolio/index.html">Portfolio</a>
+                        <a class="text-xs font-light text-primary hover:text-white transition-colors duration-200" href="index.html">Labs</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Connect</h4>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../contact/index.html">Contact</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">Twitter</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">LinkedIn</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Studio</h4>
+                        <span class="text-xs font-light text-white/50">Los Angeles, CA</span>
+                        <span class="text-xs font-light text-white/50">hello@lowkeydevs.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        let mobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                mobileMenuDrawer.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">close</span>';
+            } else {
+                mobileMenuDrawer.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">menu</span>';
+            }
+        });
+    </script>
+</body>
+</html>

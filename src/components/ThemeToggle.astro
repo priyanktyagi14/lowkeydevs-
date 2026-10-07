@@ -1,0 +1,241 @@
+---
+interface Props {
+  variant?: 'dropdown' | 'inline';
+}
+
+const { variant = 'dropdown' } = Astro.props;
+---
+
+{variant === 'dropdown' ? (
+  <div class="relative theme-toggle-container inline-block text-left" id="theme-switcher">
+    <!-- Trigger Button -->
+    <button
+      id="theme-toggle-btn"
+      type="button"
+      aria-label="Select Color Theme"
+      aria-haspopup="true"
+      aria-expanded="false"
+      class="flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-pastel-text-title dark:text-[#F5F2FC] hover:border-pastel-primary dark:hover:border-[#8F66FF] text-xs font-normal transition-all duration-200 shadow-sm group cursor-pointer focus:outline-none"
+    >
+      <span id="theme-active-icon" class="material-symbols-outlined text-[17px] text-[#7C4DFF] dark:text-[#A78BFA] transition-transform duration-300">
+        light_mode
+      </span>
+      <span id="theme-active-label" class="hidden sm:inline-block capitalize text-[11px] font-medium tracking-wide">
+        Light
+      </span>
+      <span class="material-symbols-outlined text-[14px] text-pastel-text-muted dark:text-[#7E7699] group-hover:text-pastel-primary transition-colors">
+        expand_more
+      </span>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <div
+      id="theme-dropdown-menu"
+      class="hidden absolute right-0 mt-2 w-44 rounded-[8px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] shadow-pastel-lg p-1.5 z-50 transition-all duration-200"
+    >
+      <div class="px-2 py-1 text-[10px] font-medium tracking-wider uppercase text-pastel-text-muted dark:text-[#7E7699]">
+        Select Theme
+      </div>
+      
+      <!-- Light Button -->
+      <button
+        type="button"
+        data-theme-value="light"
+        class="theme-opt-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-[6px] text-xs text-pastel-text-title dark:text-[#F5F2FC] hover:bg-pastel-primary-light dark:hover:bg-[#251D42] hover:text-pastel-primary dark:hover:text-[#A78BFA] transition-colors"
+      >
+        <span class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px] text-[#F59E0B]">light_mode</span>
+          <span class="font-normal text-xs">Light</span>
+        </span>
+        <span class="theme-check material-symbols-outlined text-[15px] text-[#7C4DFF] dark:text-[#A78BFA] hidden" data-check-for="light">check</span>
+      </button>
+
+      <!-- Dark Button -->
+      <button
+        type="button"
+        data-theme-value="dark"
+        class="theme-opt-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-[6px] text-xs text-pastel-text-title dark:text-[#F5F2FC] hover:bg-pastel-primary-light dark:hover:bg-[#251D42] hover:text-pastel-primary dark:hover:text-[#A78BFA] transition-colors"
+      >
+        <span class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px] text-[#818CF8]">dark_mode</span>
+          <span class="font-normal text-xs">Dark</span>
+        </span>
+        <span class="theme-check material-symbols-outlined text-[15px] text-[#7C4DFF] dark:text-[#A78BFA] hidden" data-check-for="dark">check</span>
+      </button>
+
+      <!-- System Button -->
+      <button
+        type="button"
+        data-theme-value="system"
+        class="theme-opt-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-[6px] text-xs text-pastel-text-title dark:text-[#F5F2FC] hover:bg-pastel-primary-light dark:hover:bg-[#251D42] hover:text-pastel-primary dark:hover:text-[#A78BFA] transition-colors"
+      >
+        <span class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px] text-pastel-text-muted dark:text-[#9D93BC]">desktop_windows</span>
+          <span class="font-normal text-xs">System</span>
+        </span>
+        <span class="theme-check material-symbols-outlined text-[15px] text-[#7C4DFF] dark:text-[#A78BFA] hidden" data-check-for="system">check</span>
+      </button>
+    </div>
+  </div>
+) : (
+  <!-- Inline Segmented Switcher (for Mobile Drawer) -->
+  <div class="theme-inline-switcher flex items-center gap-1.5 p-1 rounded-[8px] bg-[#EDEBF6] dark:bg-[#16112C] border border-[#E2DCED] dark:border-[#261F3D] w-full">
+    <button
+      type="button"
+      data-theme-value="light"
+      class="theme-opt-btn flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-[6px] text-xs font-normal transition-all"
+    >
+      <span class="material-symbols-outlined text-[16px] text-[#F59E0B]">light_mode</span>
+      <span>Light</span>
+    </button>
+    <button
+      type="button"
+      data-theme-value="dark"
+      class="theme-opt-btn flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-[6px] text-xs font-normal transition-all"
+    >
+      <span class="material-symbols-outlined text-[16px] text-[#818CF8]">dark_mode</span>
+      <span>Dark</span>
+    </button>
+    <button
+      type="button"
+      data-theme-value="system"
+      class="theme-opt-btn flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-[6px] text-xs font-normal transition-all"
+    >
+      <span class="material-symbols-outlined text-[16px]">desktop_windows</span>
+      <span>Auto</span>
+    </button>
+  </div>
+)}
+
+<script>
+  function setupThemeControls() {
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    const dropdownMenu = document.getElementById('theme-dropdown-menu');
+    const activeIcon = document.getElementById('theme-active-icon');
+    const activeLabel = document.getElementById('theme-active-label');
+    const optButtons = document.querySelectorAll<HTMLButtonElement>('.theme-opt-btn');
+    const checkIcons = document.querySelectorAll<HTMLElement>('.theme-check');
+
+    const getCurrentSetting = (): string => {
+      return localStorage.getItem('theme') || 'system';
+    };
+
+    const getSystemPrefersDark = (): boolean => {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    };
+
+    const applyTheme = (theme: string) => {
+      let isDark = false;
+      if (theme === 'dark') {
+        isDark = true;
+      } else if (theme === 'light') {
+        isDark = false;
+      } else {
+        isDark = getSystemPrefersDark();
+      }
+
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      localStorage.setItem('theme', theme);
+      updateUI(theme, isDark);
+
+      // Dispatch event for other components (like 3D canvas)
+      window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme, isDark } }));
+    };
+
+    const updateUI = (theme: string, isDark: boolean) => {
+      // Update trigger button icons & label
+      if (activeIcon) {
+        if (theme === 'light') {
+          activeIcon.textContent = 'light_mode';
+        } else if (theme === 'dark') {
+          activeIcon.textContent = 'dark_mode';
+        } else {
+          activeIcon.textContent = isDark ? 'dark_mode' : 'light_mode';
+        }
+      }
+
+      if (activeLabel) {
+        activeLabel.textContent = theme === 'system' ? 'System' : (theme === 'dark' ? 'Dark' : 'Light');
+      }
+
+      // Update checkmarks in dropdown
+      checkIcons.forEach(icon => {
+        const checkTheme = icon.getAttribute('data-check-for');
+        if (checkTheme === theme) {
+          icon.classList.remove('hidden');
+        } else {
+          icon.classList.add('hidden');
+        }
+      });
+
+      // Update active state in inline mobile switcher
+      document.querySelectorAll('.theme-inline-switcher .theme-opt-btn').forEach(btn => {
+        const val = btn.getAttribute('data-theme-value');
+        if (val === theme) {
+          btn.classList.add('bg-[#FFFFFF]', 'dark:bg-[#251D42]', 'shadow-sm', 'text-pastel-primary', 'dark:text-[#A78BFA]', 'font-medium');
+          btn.classList.remove('text-pastel-text-body', 'dark:text-[#9D93BC]');
+        } else {
+          btn.classList.remove('bg-[#FFFFFF]', 'dark:bg-[#251D42]', 'shadow-sm', 'text-pastel-primary', 'dark:text-[#A78BFA]', 'font-medium');
+          btn.classList.add('text-pastel-text-body', 'dark:text-[#9D93BC]');
+        }
+      });
+    };
+
+    // Toggle dropdown open/close
+    if (toggleBtn && dropdownMenu) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = dropdownMenu.classList.contains('hidden');
+        if (isHidden) {
+          dropdownMenu.classList.remove('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          dropdownMenu.classList.add('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close dropdown on click outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target as Node) && !toggleBtn.contains(e.target as Node)) {
+          dropdownMenu.classList.add('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Option clicks
+    optButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-theme-value') || 'system';
+        applyTheme(selected);
+        if (dropdownMenu && toggleBtn) {
+          dropdownMenu.classList.add('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Watch OS dark mode preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      const current = getCurrentSetting();
+      if (current === 'system') {
+        applyTheme('system');
+      }
+    });
+
+    // Initial setup
+    const initialTheme = getCurrentSetting();
+    const isDark = initialTheme === 'dark' || (initialTheme === 'system' && getSystemPrefersDark());
+    updateUI(initialTheme, isDark);
+  }
+
+  // Initialize
+  setupThemeControls();
+  document.addEventListener('astro:after-swap', setupThemeControls);
+</script>

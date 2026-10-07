@@ -1,0 +1,280 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThreeLogo from '../components/ThreeLogo.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const featuredProjects = [
+  {
+    index: "01",
+    title: "Nebula Labs",
+    category: "SaaS Platform",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAm1kC8j57ukPdlbjurnyXAD9-DftegouRLdV4C9aWsn3-I0gO3G3NPOv-kSNwg5pznkR5Mj-cBtLo3ykubY0H44oAxruVNqoWdRYtoeRw4QzhrF6CNObo46gOx5hjZN3G7yJmCXLSr4jL80JalgROQXQFVqowmFhA03_CMZnZU0F9V2RMOgvJqv6OOfmJeD539N76Sap-3Cc3OcicdqWeHHXF7r0rHSzMSbLoo25ZgxF2vd1y_KHmaNw",
+    href: "/project-detail",
+    offset: false
+  },
+  {
+    index: "02",
+    title: "Echo Analytics",
+    category: "Web Application",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAue_jGFNQuErsy2WD_4a5ptn9sRmrrEW-k85sZiDJFm9z2kTEecOvq3Ecs3EJ9r0WT-sz70n2XLwlilANeGVMVslZmle31UWLtXW-Y4KztG17TiCOphrf0wKt_rxNgI6tRWWTNMpYc0SEgh-C5MCbctlbGEFR_93avdOdOqOiRRrLYomEAkdPP2ciH5XAgJxQ50rh7Kw0YyKrCjcJk17ZppS5kQslpXjgtMCohBauknXlbuEfZBbXfWw",
+    href: "/project-detail",
+    offset: true
+  },
+  {
+    index: "03",
+    title: "Lumen AI",
+    category: "AI Product",
+    year: "2025",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCUIeVQ7LDmceTkQv2yLzvkpL66qT6AXp4ZjvZwferssalyWTgCllDv9hxAMzOhlMRh2hLFOGoWvZKubG9UmjnrbBhVX_18KW50ewBPSWHfN7yV_dhiX2aBcfKXXiMiC1myAcnq-5CEkpVneTyz7tQ_J1ieaoyR93A8X3Bp9yGajT3yNNNZHPxmwOUUOWS4-3avbb3sg865yXvOor9Tj98reTKWq1qV2QbN2k8fEYK5XJVbJC2uyil7Q",
+    href: "/project-detail",
+    offset: false
+  },
+  {
+    index: "04",
+    title: "Flow Studio",
+    category: "Brand & Website",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBkqGJFSvOVPCpzVBBtelG7SwHb28_2VpQyumyqzOj3Sbk31n-GC_hJDUeV5tdsCzK5MZTwLW6dwex2H6lZgY4Pv9HdX-SRxqAL-1iloUw_yHq791IMQ14jezl635NG-J2Vk0Kblc2GLu53y_rPE2YwsHGYnPEF2iYTvgHjVoiOJrB5x5BxGXt6hpJalkYPlWWj8zYj22qBgjcm2C7ljgffDFzYDPn53jTIPbMFycWaoB8c90KKv0zzA3qxf6NFd6VshKo",
+    href: "/project-detail",
+    offset: true
+  }
+];
+---
+
+<Layout title="Lowkeydevs - Premium Software Studio" currentPage="home">
+  <main class="flex-grow pt-28 md:pt-36 relative z-10 w-full">
+    <!-- Hero Grid Section -->
+    <section class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-10 md:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-6 space-y-6 py-4">
+          <!-- Hero Badge -->
+          <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC] shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-[#7C4DFF]"></span>
+            <span class="tracking-widest uppercase text-[10px] text-pastel-primary dark:text-[#8F66FF] font-medium">Studio &amp; Digital Lab</span>
+          </div>
+
+          <!-- Hero Heading -->
+          <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-light text-pastel-text-title dark:text-[#F5F2FC] leading-[1.12] tracking-tight">
+            We build <br/>
+            <span class="font-normal text-[#7C4DFF] dark:text-[#8F66FF]">digital</span> experiences <br/>
+            that people remember<span class="text-[#7C4DFF] dark:text-[#8F66FF]">.</span>
+          </h1>
+          
+          <p class="hero-text text-sm sm:text-base font-light text-pastel-text-body dark:text-[#BDB6D4] max-w-lg leading-relaxed">
+            Lowkeydevs is a digital studio crafting websites, AI products, SaaS platforms and custom software for ambitious brands and startups.
+          </p>
+          
+          <!-- Hero Action Buttons -->
+          <div class="hero-buttons flex flex-wrap gap-4 pt-2">
+            <a 
+              href="/portfolio" 
+              class="gsap-magnetic flex items-center gap-2 px-6 py-3 rounded-[6px] bg-[#7C4DFF] text-white hover:bg-[#6A3AE6] text-xs font-medium tracking-wide transition-all duration-300 shadow-pastel-md hover:shadow-pastel-lg group"
+            >
+              <span>View Our Work</span>
+              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </a>
+            
+            <a 
+              href="/contact" 
+              class="gsap-magnetic flex items-center gap-2 px-6 py-3 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-pastel-text-title dark:text-[#F5F2FC] hover:border-pastel-primary dark:hover:border-[#8F66FF] hover:text-pastel-primary dark:hover:text-[#8F66FF] hover:bg-[#EDE7FB] dark:hover:bg-[#251D42] text-xs font-normal tracking-wide transition-all duration-300 group shadow-pastel-sm"
+            >
+              <span>Start a Project</span>
+              <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-pastel-primary dark:text-[#8F66FF]">arrow_outward</span>
+            </a>
+          </div>
+          
+          <!-- Hero Badges/Features -->
+          <div class="hero-metrics flex flex-wrap items-center gap-x-8 gap-y-3 pt-6 text-xs font-light text-pastel-text-muted dark:text-[#7E7699] border-t border-[#E2DCED] dark:border-[#261F3D] max-w-lg">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[#7C4DFF] dark:text-[#8F66FF] text-[16px]">auto_awesome</span>
+              <span class="text-pastel-text-body dark:text-[#BDB6D4] font-normal">Modern Stack</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[#7C4DFF] dark:text-[#8F66FF] text-[16px]">security</span>
+              <span class="text-pastel-text-body dark:text-[#BDB6D4] font-normal">Reliable &amp; Secure</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[#7C4DFF] dark:text-[#8F66FF] text-[16px]">star_rate</span>
+              <span class="text-pastel-text-body dark:text-[#BDB6D4] font-normal">Pixel Perfect</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero 3D Object Canvas -->
+        <div class="lg:col-span-6 flex justify-center items-center relative w-full">
+          <ThreeLogo />
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work Section -->
+    <section class="w-full border-t border-[#E2DCED] dark:border-[#261F3D] bg-[#EDE8F5]/50 dark:bg-[#120D26]/50 relative z-20 py-20 md:py-28 transition-colors duration-200">
+      <div class="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+        <!-- Section Header -->
+        <div class="gsap-section-header flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-4">
+          <div>
+            <div class="text-[11px] font-medium uppercase tracking-widest text-[#7C4DFF] dark:text-[#8F66FF] mb-2">Portfolio Showcase</div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-pastel-text-title dark:text-[#F5F2FC] tracking-tight">Featured Projects</h2>
+          </div>
+          <a href="/portfolio" class="inline-flex items-center gap-1.5 text-xs font-normal text-pastel-primary dark:text-[#8F66FF] hover:text-pastel-primary-dark dark:hover:text-[#A78BFA] transition-colors group">
+            <span>View all projects</span>
+            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+        
+        <!-- Staggered Card Grid -->
+        <div class="gsap-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-start">
+          {featuredProjects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Capabilities Bento Grid -->
+    <section class="w-full border-t border-[#E2DCED] dark:border-[#261F3D] bg-[#FFFFFF] dark:bg-[#0B0817] py-20 md:py-28 relative z-20 transition-colors duration-200">
+      <div class="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+        <div class="gsap-section-header max-w-2xl mb-14">
+          <div class="text-[11px] font-medium uppercase tracking-widest text-[#7C4DFF] dark:text-[#8F66FF] mb-2">Studio Capabilities</div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-pastel-text-title dark:text-[#F5F2FC] tracking-tight mb-4">
+            Engineered for precision, speed and impact.
+          </h2>
+          <p class="text-xs sm:text-sm font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+            We partner with visionary founders to engineer products that disrupt categories and captivate audiences.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="gsap-bento-item pastel-card p-8 flex flex-col justify-between">
+            <div class="w-10 h-10 rounded-[6px] bg-[#EDE7FB] dark:bg-[#261B48] flex items-center justify-center text-[#7C4DFF] dark:text-[#A78BFA] mb-6">
+              <span class="material-symbols-outlined text-[22px]">devices</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-pastel-text-title dark:text-[#F5F2FC] mb-2">Web &amp; Mobile Apps</h3>
+              <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+                High-performance reactive interfaces with clean architecture, fluid micro-interactions, and instant response times.
+              </p>
+            </div>
+          </div>
+
+          <div class="gsap-bento-item pastel-card p-8 flex flex-col justify-between">
+            <div class="w-10 h-10 rounded-[6px] bg-[#E1F1FD] dark:bg-[#122A42] flex items-center justify-center text-[#0284C7] dark:text-[#38BDF8] mb-6">
+              <span class="material-symbols-outlined text-[22px]">smart_toy</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-pastel-text-title dark:text-[#F5F2FC] mb-2">AI &amp; Generative Systems</h3>
+              <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+                Full-stack AI workflows, conversational agents, custom LLM fine-tuning, and real-time inference pipelines.
+              </p>
+            </div>
+          </div>
+
+          <div class="gsap-bento-item pastel-card p-8 flex flex-col justify-between">
+            <div class="w-10 h-10 rounded-[6px] bg-[#E0F6F2] dark:bg-[#133033] flex items-center justify-center text-[#0D9488] dark:text-[#2DD4BF] mb-6">
+              <span class="material-symbols-outlined text-[22px]">cloud_sync</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-pastel-text-title dark:text-[#F5F2FC] mb-2">SaaS Architecture</h3>
+              <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+                Scalable multi-tenant cloud platforms, distributed databases, real-time analytics, and billing integrations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner / Client Logos Row -->
+    <section class="w-full border-t border-[#E2DCED] dark:border-[#261F3D] bg-[#F6F4F9] dark:bg-[#0B0817] relative z-20 py-14 transition-colors duration-200">
+      <div class="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+        <div class="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4 opacity-60 hover:opacity-100 transition-all duration-300">
+          
+          <!-- Acme Corp -->
+          <div class="flex items-center gap-2 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span class="font-normal text-xs tracking-widest uppercase">Acme Corp</span>
+          </div>
+
+          <!-- vertex -->
+          <div class="flex items-center gap-1.5 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4.5l8 15 8-15"></path>
+            </svg>
+            <span class="font-normal text-xs tracking-widest lowercase">vertex</span>
+          </div>
+
+          <!-- cloudax -->
+          <div class="flex items-center gap-2 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19A5.5 5.5 0 0 0 22 13.5a5.4 5.4 0 0 0-4.5-5.3 7.5 7.5 0 1 0-14 3.1A5 5 0 0 0 0 16a5 5 0 0 0 5 5h12.5z"></path>
+            </svg>
+            <span class="font-normal text-xs tracking-widest lowercase">cloudax</span>
+          </div>
+
+          <!-- Spherule -->
+          <div class="flex items-center gap-1.5 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <circle cx="12" cy="12" r="8"></circle>
+              <circle cx="12" cy="12" r="3.5"></circle>
+            </svg>
+            <span class="font-normal text-xs tracking-widest">Spherule</span>
+          </div>
+
+          <!-- APEX -->
+          <div class="flex items-center gap-2 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3L2 21h20L12 3z"></path>
+            </svg>
+            <span class="font-normal text-xs tracking-widest uppercase">APEX</span>
+          </div>
+
+          <!-- pulse -->
+          <div class="flex items-center gap-2 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h3l3-9 4 18 3-12h5"></path>
+            </svg>
+            <span class="font-normal text-xs tracking-widest lowercase">pulse</span>
+          </div>
+
+          <!-- VisionUI -->
+          <div class="flex items-center gap-2 text-pastel-text-title dark:text-[#F5F2FC]">
+            <svg class="w-4 h-4 text-pastel-primary dark:text-[#8F66FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="font-normal text-xs tracking-widest">VisionUI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="w-full bg-[#EDE8F5] dark:bg-[#151028] border-t border-[#E2DCED] dark:border-[#261F3D] py-16 md:py-24 relative z-20 transition-colors duration-200">
+      <div class="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 text-center space-y-6">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-light text-pastel-text-title dark:text-[#F5F2FC] tracking-tight max-w-2xl mx-auto">
+          Have an ambitious project in mind?
+        </h2>
+        <p class="text-sm font-light text-pastel-text-body dark:text-[#BDB6D4] max-w-lg mx-auto">
+          Let's turn your vision into an exceptional product. We're currently booking new client engagements.
+        </p>
+        <div class="pt-2">
+          <a 
+            href="/contact" 
+            class="gsap-magnetic inline-flex items-center gap-2 px-8 py-3.5 rounded-[6px] bg-[#7C4DFF] text-white hover:bg-[#6A3AE6] text-xs font-medium tracking-wide shadow-pastel-md hover:shadow-pastel-lg transition-all"
+          >
+            <span>Start Collaboration</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

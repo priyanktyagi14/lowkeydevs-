@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Contact - Lowkeydevs" currentPage="contact">
+  <main class="flex-grow pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1440px] mx-auto w-full relative z-10">
+    <!-- Header Section -->
+    <div class="max-w-3xl mb-14 md:mb-18 pt-4">
+      <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC] mb-5 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-[#7C4DFF]"></span>
+        <span class="tracking-widest uppercase text-[10px] text-pastel-primary dark:text-[#8F66FF] font-medium">Let's collaborate</span>
+      </div>
+      <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-light text-pastel-text-title dark:text-[#F5F2FC] leading-[1.12] tracking-tight mb-5">
+        Ready to build something <span class="font-normal text-[#7C4DFF] dark:text-[#8F66FF]">remarkable?</span>
+      </h1>
+      <p class="hero-text text-sm sm:text-base font-light text-pastel-text-body dark:text-[#BDB6D4] max-w-2xl leading-relaxed">
+        Tell us about your project, your vision, and your timeline. We're currently accepting new client engagements and would love to hear what you're working on.
+      </p>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <!-- Contact Form -->
+      <div class="gsap-bento-item lg:col-span-8 bg-[#FFFFFF] dark:bg-[#151028] rounded-[8px] p-6 sm:p-8 md:p-10 border border-[#E2DCED] dark:border-[#261F3D] relative shadow-pastel-card transition-colors duration-200">
+        <form id="contact-form" class="space-y-6 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="name">Your Name</label>
+              <input class="pastel-input w-full px-4 py-3" id="name" placeholder="Alex Morgan" type="text" required />
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="email">Work Email</label>
+              <input class="pastel-input w-full px-4 py-3" id="email" placeholder="alex@company.com" type="email" required />
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="company">Company / Organization</label>
+            <input class="pastel-input w-full px-4 py-3" id="company" placeholder="Acme Inc." type="text" />
+          </div>
+          
+          <div class="space-y-3">
+            <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block">Project Type</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="flex items-center gap-2 p-3 rounded-[6px] bg-[#FAF8FC] dark:bg-[#1A1433] border border-[#E2DCED] dark:border-[#261F3D] hover:border-pastel-primary dark:hover:border-[#8F66FF] transition-colors cursor-pointer text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC]">
+                <input class="accent-[#7C4DFF]" name="project_type" type="radio" value="webapp" checked />
+                <span>Web App</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-[6px] bg-[#FAF8FC] dark:bg-[#1A1433] border border-[#E2DCED] dark:border-[#261F3D] hover:border-pastel-primary dark:hover:border-[#8F66FF] transition-colors cursor-pointer text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC]">
+                <input class="accent-[#7C4DFF]" name="project_type" type="radio" value="ai" />
+                <span>AI Product</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-[6px] bg-[#FAF8FC] dark:bg-[#1A1433] border border-[#E2DCED] dark:border-[#261F3D] hover:border-pastel-primary dark:hover:border-[#8F66FF] transition-colors cursor-pointer text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC]">
+                <input class="accent-[#7C4DFF]" name="project_type" type="radio" value="brand" />
+                <span>Brand &amp; Site</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-[6px] bg-[#FAF8FC] dark:bg-[#1A1433] border border-[#E2DCED] dark:border-[#261F3D] hover:border-pastel-primary dark:hover:border-[#8F66FF] transition-colors cursor-pointer text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC]">
+                <input class="accent-[#7C4DFF]" name="project_type" type="radio" value="saas" />
+                <span>SaaS Suite</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="budget">Estimated Budget</label>
+              <select class="pastel-input w-full px-4 py-3" id="budget">
+                <option value="" disabled selected>Select a range</option>
+                <option value="10k-25k">$10k &ndash; $25k</option>
+                <option value="25k-50k">$25k &ndash; $50k</option>
+                <option value="50k-100k">$50k &ndash; $100k</option>
+                <option value="100k+">$100k+</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="timeline">Desired Timeline</label>
+              <select class="pastel-input w-full px-4 py-3" id="timeline">
+                <option value="" disabled selected>Select timeframe</option>
+                <option value="1-2">1&ndash;2 months</option>
+                <option value="3-4">3&ndash;4 months</option>
+                <option value="5-6">5&ndash;6 months</option>
+                <option value="6+">6+ months</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label class="text-xs font-medium tracking-wide text-pastel-text-title dark:text-[#F5F2FC] block" for="description">Project Details</label>
+            <textarea class="pastel-input w-full px-4 py-3 resize-none" id="description" placeholder="Tell us about your objectives, tech requirements, or product scope..." rows="4"></textarea>
+          </div>
+          
+          <div class="pt-2 flex items-center justify-between">
+            <div id="form-status" class="text-xs font-medium text-emerald-600 dark:text-emerald-400 hidden">
+              Thank you! We received your message and will reach out shortly.
+            </div>
+            <button id="submit-btn" class="gsap-magnetic ml-auto px-7 py-3.5 rounded-[6px] bg-[#7C4DFF] text-white hover:bg-[#6A3AE6] text-xs font-medium tracking-wide transition-all duration-300 shadow-pastel-md hover:shadow-pastel-lg flex items-center gap-2" type="submit">
+              <span>Submit Inquiry</span>
+              <span class="material-symbols-outlined text-[15px]">send</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sidebar Info -->
+      <div class="lg:col-span-4 space-y-5">
+        <!-- Info Card 1 -->
+        <div class="gsap-bento-item pastel-card p-6 sm:p-7">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="w-9 h-9 rounded-[6px] bg-[#EDE7FB] dark:bg-[#261B48] flex items-center justify-center text-[#7C4DFF] dark:text-[#A78BFA]">
+              <span class="material-symbols-outlined text-[18px]">mail</span>
+            </div>
+            <h3 class="text-sm font-medium text-pastel-text-title dark:text-[#F5F2FC] tracking-tight">Direct Email</h3>
+          </div>
+          <a class="text-xs font-normal text-pastel-primary dark:text-[#8F66FF] hover:underline block" href="mailto:hello@lowkeydevs.com">hello@lowkeydevs.com</a>
+        </div>
+
+        <!-- Info Card 2 -->
+        <div class="gsap-bento-item pastel-card p-6 sm:p-7">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="w-9 h-9 rounded-[6px] bg-[#EDE7FB] dark:bg-[#261B48] flex items-center justify-center text-[#7C4DFF] dark:text-[#A78BFA]">
+              <span class="material-symbols-outlined text-[18px]">schedule</span>
+            </div>
+            <h3 class="text-sm font-medium text-pastel-text-title dark:text-[#F5F2FC] tracking-tight">Response Time</h3>
+          </div>
+          <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] leading-relaxed">
+            We review all inquiries carefully. Expect a thoughtful response within <span class="text-pastel-text-title dark:text-[#F5F2FC] font-medium">24&ndash;48 hours</span>.
+          </p>
+        </div>
+
+        <!-- Info Card 3 -->
+        <div class="gsap-bento-item pastel-card p-6 sm:p-7">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="w-9 h-9 rounded-[6px] bg-[#EDE7FB] dark:bg-[#261B48] flex items-center justify-center text-[#7C4DFF] dark:text-[#A78BFA]">
+              <span class="material-symbols-outlined text-[18px]">location_on</span>
+            </div>
+            <h3 class="text-sm font-medium text-pastel-text-title dark:text-[#F5F2FC] tracking-tight">Studio &amp; Hours</h3>
+          </div>
+          <p class="text-xs font-light text-pastel-text-body dark:text-[#BDB6D4] mb-1">Los Angeles, CA &bull; Remote-First</p>
+          <p class="text-[11px] font-light text-pastel-text-muted dark:text-[#7E7699]">Monday &ndash; Friday: 9am &ndash; 6pm PST</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusMsg = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (form && statusMsg && submitBtn) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.innerHTML = '<span>Sending...</span>';
+      
+      setTimeout(() => {
+        statusMsg.classList.remove('hidden');
+        submitBtn.innerHTML = '<span>Sent Successfully</span><span class="material-symbols-outlined text-[15px]">check</span>';
+        submitBtn.classList.replace('bg-[#7C4DFF]', 'bg-emerald-600');
+        form.reset();
+      }, 700);
+    });
+  }
+</script>

@@ -1,0 +1,256 @@
+---
+---
+
+<div class="relative w-full h-[420px] lg:h-[540px] flex items-center justify-center">
+  <!-- Three.js Canvas -->
+  <canvas id="hero-logo-canvas" class="absolute inset-0 w-full h-full z-10 cursor-pointer"></canvas>
+  
+  <!-- Floating Info Badge -->
+  <div class="gsap-reveal absolute right-2 bottom-2 lg:right-6 lg:bottom-6 max-w-[220px] bg-[#FFFFFF] dark:bg-[#151028] p-4 rounded-[8px] border border-[#E2DCED] dark:border-[#261F3D] z-20 space-y-1.5 shadow-pastel-card pointer-events-none transition-colors duration-200">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[#7C4DFF]"></span>
+      <span class="text-[10px] uppercase font-medium tracking-widest text-pastel-primary dark:text-[#A78BFA]">Ideas to Impact</span>
+    </div>
+    <p class="text-[11px] font-light leading-relaxed text-pastel-text-body dark:text-[#BDB6D4]">
+      We turn ideas into meaningful digital products that drive real impact.
+    </p>
+  </div>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  function initThreeHero() {
+    const canvas = document.getElementById('hero-logo-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const container = canvas.parentElement;
+    if (!container) return;
+
+    // Scene
+    const scene = new THREE.Scene();
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 15);
+
+    // WebGL Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      alpha: true,
+      antialias: true
+    });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    // Logo Group & Orbits Group
+    const logoMesh = new THREE.Group();
+    scene.add(logoMesh);
+
+    const orbitsGroup = new THREE.Group();
+    scene.add(orbitsGroup);
+
+    const scale = 0.038;
+
+    // Shape 1: Top-Left Diamond
+    const shape1 = new THREE.Shape();
+    shape1.moveTo(-100 * scale, 75 * scale);
+    shape1.lineTo(-20 * scale, 75 * scale);
+    shape1.lineTo(0, 0);
+    shape1.lineTo(-80 * scale, 0);
+    shape1.closePath();
+
+    // Shape 2: Bottom-Right Diamond
+    const shape2 = new THREE.Shape();
+    shape2.moveTo(0, 0);
+    shape2.lineTo(80 * scale, 0);
+    shape2.lineTo(100 * scale, -75 * scale);
+    shape2.lineTo(20 * scale, -75 * scale);
+    shape2.closePath();
+
+    const extrudeSettings = {
+      depth: 0.55,
+      bevelEnabled: true,
+      bevelSegments: 8,
+      steps: 2,
+      bevelSize: 0.045,
+      bevelThickness: 0.045
+    };
+
+    const geom1 = new THREE.ExtrudeGeometry(shape1, extrudeSettings);
+    const geom2 = new THREE.ExtrudeGeometry(shape2, extrudeSettings);
+
+    // Premium Pastel Violet / Lilac Matte Material
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x7C4DFF,
+      metalness: 0.6,
+      roughness: 0.25,
+      flatShading: false
+    });
+
+    const mesh1 = new THREE.Mesh(geom1, material);
+    mesh1.castShadow = true;
+    mesh1.receiveShadow = true;
+
+    const mesh2 = new THREE.Mesh(geom2, material);
+    mesh2.castShadow = true;
+    mesh2.receiveShadow = true;
+
+    logoMesh.add(mesh1);
+    logoMesh.add(mesh2);
+    logoMesh.rotation.set(0.18, 0.25, 0.05);
+
+    // Orbits
+    const radius1 = 4.8;
+    const orbit1Points = [];
+    for (let i = 0; i <= 64; i++) {
+      const theta = (i / 64) * Math.PI * 2;
+      orbit1Points.push(new THREE.Vector3(Math.cos(theta) * radius1, 0, Math.sin(theta) * radius1));
+    }
+    const orbit1Geom = new THREE.BufferGeometry().setFromPoints(orbit1Points);
+    const orbitMat = new THREE.LineBasicMaterial({
+      color: 0x9B7AF7,
+      transparent: true,
+      opacity: 0.35
+    });
+
+    const orbit1 = new THREE.Line(orbit1Geom, orbitMat);
+    orbit1.rotation.x = Math.PI / 4.5;
+    orbit1.rotation.y = Math.PI / 10;
+    orbitsGroup.add(orbit1);
+
+    const dotGeom = new THREE.SphereGeometry(0.08, 16, 16);
+    const dotMat = new THREE.MeshBasicMaterial({ color: 0x7C4DFF });
+    const dot1 = new THREE.Mesh(dotGeom, dotMat);
+    orbit1.add(dot1);
+
+    const radius2 = 5.8;
+    const orbit2Points = [];
+    for (let i = 0; i <= 64; i++) {
+      const theta = (i / 64) * Math.PI * 2;
+      orbit2Points.push(new THREE.Vector3(Math.cos(theta) * radius2, 0, Math.sin(theta) * radius2));
+    }
+    const orbit2Geom = new THREE.BufferGeometry().setFromPoints(orbit2Points);
+    const orbit2 = new THREE.Line(orbit2Geom, orbitMat);
+    orbit2.rotation.x = -Math.PI / 6;
+    orbit2.rotation.z = Math.PI / 8;
+    orbitsGroup.add(orbit2);
+
+    const dot2 = new THREE.Mesh(dotGeom, dotMat);
+    orbit2.add(dot2);
+
+    // Soft Shadow Ground Plane
+    const shadowPlaneGeom = new THREE.PlaneGeometry(25, 25);
+    const shadowPlaneMat = new THREE.ShadowMaterial({ opacity: 0.12 });
+    const shadowPlane = new THREE.Mesh(shadowPlaneGeom, shadowPlaneMat);
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = -3.2;
+    shadowPlane.receiveShadow = true;
+    scene.add(shadowPlane);
+
+    // LIGHTS for Adaptive Light / Dark Setting
+    const isInitialDark = document.documentElement.classList.contains('dark');
+    const ambientLight = new THREE.AmbientLight(isInitialDark ? 0x241A4A : 0xF4F1F8, isInitialDark ? 2.8 : 3.2);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xFFFFFF, isInitialDark ? 3.8 : 3.5);
+    keyLight.position.set(-6, 8, 7);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 1024;
+    keyLight.shadow.mapSize.height = 1024;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x7C4DFF, 6.0);
+    fillLight.position.set(7, -4, 5);
+    scene.add(fillLight);
+
+    const pointLight = new THREE.PointLight(0x9B7AF7, 8.0, 18);
+    pointLight.position.set(0, -2.8, 1);
+    scene.add(pointLight);
+
+    // Update 3D lighting on theme change
+    window.addEventListener('themeChanged', (e: any) => {
+      const isDark = e.detail?.isDark ?? document.documentElement.classList.contains('dark');
+      if (isDark) {
+        ambientLight.color.setHex(0x241A4A);
+        ambientLight.intensity = 2.8;
+        keyLight.intensity = 3.8;
+        shadowPlaneMat.opacity = 0.35;
+      } else {
+        ambientLight.color.setHex(0xF4F1F8);
+        ambientLight.intensity = 3.2;
+        keyLight.intensity = 3.5;
+        shadowPlaneMat.opacity = 0.12;
+      }
+    });
+
+    // Mouse tilt tracking
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0.18;
+    let targetY = 0.25;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+      targetY = 0.25 + mouseX * 0.45;
+      targetX = 0.18 + mouseY * 0.45;
+    };
+    window.addEventListener('mousemove', onMouseMove);
+
+    // Animation Loop
+    const clock = new THREE.Clock();
+    let animFrameId: number;
+
+    function animate() {
+      animFrameId = requestAnimationFrame(animate);
+      const elapsedTime = clock.getElapsedTime();
+
+      if (logoMesh) {
+        logoMesh.position.y = Math.sin(elapsedTime * 0.8) * 0.25;
+        logoMesh.rotation.y += (targetY - logoMesh.rotation.y) * 0.06;
+        logoMesh.rotation.x += (targetX - logoMesh.rotation.x) * 0.06;
+        logoMesh.rotation.z = Math.sin(elapsedTime * 0.4) * 0.03 + 0.05;
+      }
+
+      if (dot1 && dot2) {
+        const theta1 = elapsedTime * 0.35;
+        dot1.position.x = Math.cos(theta1) * radius1;
+        dot1.position.z = Math.sin(theta1) * radius1;
+
+        const theta2 = -elapsedTime * 0.25;
+        dot2.position.x = Math.cos(theta2) * radius2;
+        dot2.position.z = Math.sin(theta2) * radius2;
+      }
+
+      orbitsGroup.rotation.y = elapsedTime * 0.04;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    const onResize = () => {
+      if (!container) return;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    };
+    window.addEventListener('resize', onResize);
+
+    canvas.addEventListener('click', () => {
+      targetY += Math.PI * 0.5;
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThreeHero);
+  } else {
+    initThreeHero();
+  }
+</script>

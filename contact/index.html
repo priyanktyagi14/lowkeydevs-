@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contact - Lowkeydevs</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#1c1a22",
+                        "on-primary-fixed-variant": "#4f00d0",
+                        "on-surface": "#e6e0ee",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#e8deff",
+                        "on-primary": "#370096",
+                        "on-tertiary-fixed": "#311300",
+                        "outline": "#948ea1",
+                        "surface-bright": "#2c2934",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#d4bbff",
+                        "on-primary-fixed": "#20005f",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#fff7f4",
+                        "on-error": "#690005",
+                        "text-secondary": "#A3A3A3",
+                        "secondary": "#ebd6ff",
+                        "on-secondary-fixed-variant": "#561bb8",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed": "#eaddff",
+                        "primary-container": "#8C52FF",
+                        "outline-variant": "#494455",
+                        "primary-fixed-dim": "#e1ccff",
+                        "on-surface-variant": "#cac3d8",
+                        "text-muted": "#737373",
+                        "on-secondary-fixed": "#24005b",
+                        "surface-container-highest": "#282530",
+                        "card": "#131313",
+                        "surface-container-high": "#201d26",
+                        "text-primary": "#FFFFFF",
+                        "secondary-container": "#561bb8",
+                        "on-tertiary": "#512400",
+                        "inverse-on-surface": "#322f3a",
+                        "tertiary-container": "#b55800",
+                        "surface-container-lowest": "#0b0a0f",
+                        "on-primary-container": "#fcf6ff",
+                        "secondary-fixed-dim": "#ebd6ff",
+                        "surface-dim": "#121018",
+                        "surface-container": "#18161f",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "surface-container-low": "#15131a",
+                        "surface-tint": "#e1ccff",
+                        "border": "rgba(255, 255, 255, 0.08)",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "background": "#0D0D0D",
+                        "tertiary": "#ffb688",
+                        "on-secondary-container": "#c2a7ff",
+                        "on-background": "#e6e0ee",
+                        "inverse-surface": "#e6e0ee",
+                        "on-secondary": "#3d008f",
+                        "inverse-primary": "#6833ea",
+                        "surface": "#141414"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        sm: "0.125rem",
+                        md: "0.375rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        "label-caps": ["Poppins", "sans-serif"],
+                        "display-lg-mobile": ["Poppins", "sans-serif"],
+                        "body-md": ["Poppins", "sans-serif"],
+                        "headline-sm": ["Poppins", "sans-serif"],
+                        "display-lg": ["Poppins", "sans-serif"],
+                        "headline-md": ["Poppins", "sans-serif"],
+                        "body-lg": ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .bg-grid {
+            background-size: 32px 32px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75vw;
+            height: 75vw;
+            max-width: 750px;
+            max-height: 750px;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.16) 0%, rgba(13, 13, 13, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(100px);
+        }
+        
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -15%;
+            right: -10%;
+            width: 55vw;
+            height: 55vw;
+            max-width: 550px;
+            max-height: 550px;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.1) 0%, rgba(13, 13, 13, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(90px);
+        }
+
+        .form-input {
+            background-color: #171717;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border-radius: 4px;
+            font-weight: 300;
+            font-size: 14px;
+            transition: all 0.25s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #8C52FF;
+            box-shadow: 0 0 0 1px #8C52FF, 0 0 20px rgba(140, 82, 255, 0.2);
+            background-color: #1a1a1a;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+            font-weight: 300;
+        }
+
+        .info-card {
+            background-color: #131313;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .info-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+        .info-card:hover {
+            border-color: rgba(140, 82, 255, 0.4);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative bg-background text-text-primary bg-grid font-light">
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0D0D0D]/80 backdrop-blur-md border-b border-white/[0.06] transition-all duration-300">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2.5 cursor-pointer z-50 group">
+                <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                    <path d="
+                      M0 0
+                      L80 0
+                      L100 75
+                      L120 150
+                      L200 150
+                      L180 75
+                      L100 75
+                      L20 75
+                      Z
+                    " fill="#8C52FF"></path>
+                </svg>
+                <span class="font-normal text-lg tracking-tight text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-light">
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../portfolio/index.html">Portfolio</a>
+                <a class="text-white/60 hover:text-white transition-colors duration-200" href="../labs/index.html">Labs</a>
+                <a class="text-white font-normal relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#8C52FF] after:rounded-full" href="index.html">Contact</a>
+            </div>
+            
+            <div class="hidden md:block">
+                <a href="index.html" class="flex items-center gap-2 px-5 py-2 rounded-[4px] border border-white/15 text-white/90 hover:text-white hover:bg-white/[0.05] hover:border-primary-container text-xs font-light tracking-wide transition-all duration-200 group">
+                    <span>Let's Build</span>
+                    <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="md:hidden text-text-primary z-50 p-2 focus:outline-none">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu-drawer" class="fixed inset-0 bg-[#0D0D0D] z-45 translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center px-8 space-y-6 text-xl font-light">
+            <a class="text-white/70 hover:text-white transition-colors" href="../index.html">Home</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../portfolio/index.html">Portfolio</a>
+            <a class="text-white/70 hover:text-white transition-colors" href="../labs/index.html">Labs</a>
+            <a class="text-white hover:text-primary transition-colors" href="index.html">Contact</a>
+            <a href="index.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-[4px] border border-white/15 text-white hover:bg-surface-variant w-fit text-sm font-light mt-4">
+                Let's Build
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[1440px] mx-auto w-full relative z-10">
+        <!-- Header Section -->
+        <div class="max-w-3xl mb-16 md:mb-20 pt-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[3px] bg-white/[0.03] border border-white/10 text-xs font-light text-white/70 mb-5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#8C52FF]"></span>
+                <span class="tracking-widest uppercase text-[10px]">Let's collaborate</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extralight text-white leading-[1.12] tracking-tight mb-5">
+                Ready to build something <span class="font-light text-transparent bg-clip-text bg-gradient-to-r from-[#e8deff] via-[#b688ff] to-[#8C52FF]">remarkable?</span>
+            </h1>
+            <p class="text-sm sm:text-base font-light text-white/60 max-w-2xl leading-relaxed">
+                Tell us about your project, your vision, and your timeline. We're currently accepting new projects and would love to hear what you're working on.
+            </p>
+        </div>
+
+        <!-- Layout Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <!-- Contact Form (Bento Style) -->
+            <div class="lg:col-span-8 bg-[#131313] rounded-[6px] p-6 sm:p-8 md:p-10 border border-white/[0.08] relative overflow-hidden group shadow-2xl">
+                <!-- Subtle decorative background effect -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#8C52FF]/5 rounded-full blur-[80px] group-hover:bg-[#8C52FF]/10 transition-colors duration-500 pointer-events-none"></div>
+                
+                <form class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-light tracking-wide text-white/70 block" for="name">Your Name</label>
+                            <input class="form-input w-full px-4 py-3" id="name" placeholder="Alex Morgan" type="text"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-light tracking-wide text-white/70 block" for="email">Work Email</label>
+                            <input class="form-input w-full px-4 py-3" id="email" placeholder="alex@company.com" type="email"/>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-xs font-light tracking-wide text-white/70 block" for="company">Company / Organization</label>
+                        <input class="form-input w-full px-4 py-3" id="company" placeholder="Acme Inc." type="text"/>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <label class="text-xs font-light tracking-wide text-white/70 block">Project Type</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="flex items-center gap-2 p-3 rounded-[4px] bg-[#171717] border border-white/10 hover:border-white/20 transition-colors cursor-pointer text-xs font-light text-white/70">
+                                <input class="form-radio bg-transparent border-white/20 text-[#8C52FF] focus:ring-0 focus:ring-offset-0" name="project_type" type="radio" checked/>
+                                <span>Web App</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-[4px] bg-[#171717] border border-white/10 hover:border-white/20 transition-colors cursor-pointer text-xs font-light text-white/70">
+                                <input class="form-radio bg-transparent border-white/20 text-[#8C52FF] focus:ring-0 focus:ring-offset-0" name="project_type" type="radio"/>
+                                <span>AI Product</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-[4px] bg-[#171717] border border-white/10 hover:border-white/20 transition-colors cursor-pointer text-xs font-light text-white/70">
+                                <input class="form-radio bg-transparent border-white/20 text-[#8C52FF] focus:ring-0 focus:ring-offset-0" name="project_type" type="radio"/>
+                                <span>Brand &amp; Site</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-[4px] bg-[#171717] border border-white/10 hover:border-white/20 transition-colors cursor-pointer text-xs font-light text-white/70">
+                                <input class="form-radio bg-transparent border-white/20 text-[#8C52FF] focus:ring-0 focus:ring-offset-0" name="project_type" type="radio"/>
+                                <span>SaaS Suite</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-light tracking-wide text-white/70 block" for="budget">Estimated Budget</label>
+                            <select class="form-input w-full px-4 py-3 appearance-none" id="budget">
+                                <option disabled="" selected="" value="">Select a range</option>
+                                <option value="10k-25k">$10k - $25k</option>
+                                <option value="25k-50k">$25k - $50k</option>
+                                <option value="50k-100k">$50k - $100k</option>
+                                <option value="100k+">$100k+</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-light tracking-wide text-white/70 block" for="timeline">Desired Timeline</label>
+                            <select class="form-input w-full px-4 py-3 appearance-none" id="timeline">
+                                <option disabled="" selected="" value="">Select timeframe</option>
+                                <option value="1-2">1-2 months</option>
+                                <option value="3-4">3-4 months</option>
+                                <option value="5-6">5-6 months</option>
+                                <option value="6+">6+ months</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-xs font-light tracking-wide text-white/70 block" for="description">Project Details</label>
+                        <textarea class="form-input w-full px-4 py-3 resize-none" id="description" placeholder="Tell us about your objectives, architecture needs, or ideas..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="pt-2 flex justify-end">
+                        <button class="px-7 py-3.5 rounded-[4px] bg-[#8C52FF] text-white hover:bg-[#7b40f2] text-xs font-normal tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(140,82,255,0.3)] hover:shadow-[0_0_30px_rgba(140,82,255,0.5)] flex items-center gap-2" type="button">
+                            <span>Submit Inquiry</span>
+                            <span class="material-symbols-outlined text-[15px]">send</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sidebar Info -->
+            <div class="lg:col-span-4 space-y-5">
+                <!-- Info Card 1 -->
+                <div class="info-card p-6 sm:p-7">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-9 h-9 rounded-[4px] bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#8C52FF]">
+                            <span class="material-symbols-outlined text-[18px]">mail</span>
+                        </div>
+                        <h3 class="text-sm font-normal text-white tracking-tight">Direct Email</h3>
+                    </div>
+                    <a class="text-xs font-light text-white/60 hover:text-white transition-colors block" href="mailto:hello@lowkeydevs.com">hello@lowkeydevs.com</a>
+                </div>
+
+                <!-- Info Card 2 -->
+                <div class="info-card p-6 sm:p-7">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-9 h-9 rounded-[4px] bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#8C52FF]">
+                            <span class="material-symbols-outlined text-[18px]">schedule</span>
+                        </div>
+                        <h3 class="text-sm font-normal text-white tracking-tight">Response Time</h3>
+                    </div>
+                    <p class="text-xs font-light text-white/60 leading-relaxed">
+                        We review all inquiries carefully. Expect a thoughtful response within <span class="text-white font-normal">24-48 hours</span>.
+                    </p>
+                </div>
+
+                <!-- Info Card 3 -->
+                <div class="info-card p-6 sm:p-7">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-9 h-9 rounded-[4px] bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#8C52FF]">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                        </div>
+                        <h3 class="text-sm font-normal text-white tracking-tight">Studio &amp; Hours</h3>
+                    </div>
+                    <p class="text-xs font-light text-white/60 mb-1">Los Angeles, CA &bull; Remote-First</p>
+                    <p class="text-[11px] font-extralight text-white/40">Monday &ndash; Friday: 9am &ndash; 6pm PST</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B0B0B] border-t border-white/[0.06] mt-auto relative z-20">
+        <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-14 md:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="col-span-1 md:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <a href="../index.html" class="flex items-center gap-2.5 mb-3 cursor-pointer group">
+                            <svg height="22" viewbox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+                                <path d="
+                                  M0 0
+                                  L80 0
+                                  L100 75
+                                  L120 150
+                                  L200 150
+                                  L180 75
+                                  L100 75
+                                  L20 75
+                                  Z
+                                " fill="#8C52FF"></path>
+                            </svg>
+                            <span class="font-normal text-base text-white group-hover:text-primary transition-colors">lowkeydevs</span>
+                        </a>
+                        <p class="text-xs font-light text-white/50 max-w-sm leading-relaxed">
+                            Crafting premium software, AI solutions and digital experiences for high-growth teams worldwide.
+                        </p>
+                    </div>
+                    <p class="text-[11px] font-extralight text-white/40 mt-8 md:mt-0">
+                        &copy; 2026 Lowkeydevs. All rights reserved.
+                    </p>
+                </div>
+                
+                <div class="col-span-1 md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Navigation</h4>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../index.html">Home</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../portfolio/index.html">Portfolio</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="../labs/index.html">Labs</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Connect</h4>
+                        <a class="text-xs font-light text-primary hover:text-white transition-colors duration-200" href="index.html">Contact</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">Twitter</a>
+                        <a class="text-xs font-light text-white/50 hover:text-white transition-colors duration-200" href="#">LinkedIn</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-[10px] font-normal uppercase tracking-widest text-white/70 mb-1">Studio</h4>
+                        <span class="text-xs font-light text-white/50">Los Angeles, CA</span>
+                        <span class="text-xs font-light text-white/50">hello@lowkeydevs.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        let mobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                mobileMenuDrawer.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">close</span>';
+            } else {
+                mobileMenuDrawer.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-[24px]">menu</span>';
+            }
+        });
+    </script>
+</body>
+</html>

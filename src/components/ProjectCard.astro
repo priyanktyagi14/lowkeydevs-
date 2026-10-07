@@ -1,0 +1,64 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  category: string;
+  year: string;
+  image: string;
+  href?: string;
+  offset?: boolean;
+}
+
+const {
+  index,
+  title,
+  category,
+  year,
+  image,
+  href = "/project-detail",
+  offset = false,
+} = Astro.props;
+---
+
+<a 
+  href={href} 
+  class={`gsap-card block group pastel-card overflow-hidden ${offset ? 'md:translate-y-8' : ''}`}
+>
+  <div class="relative aspect-[16/10] overflow-hidden bg-[#EDE8F5] dark:bg-[#1A1433] border-b border-[#E2DCED] dark:border-[#261F3D]">
+    <img 
+      src={image} 
+      alt={`${title} project preview`} 
+      class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      loading="lazy"
+    />
+    
+    <!-- Badges -->
+    <div class="absolute top-3.5 left-3.5 flex gap-2">
+      <span class="px-2.5 py-1 rounded-[4px] bg-[#FFFFFF]/90 dark:bg-[#151028]/90 backdrop-blur-sm border border-[#E2DCED] dark:border-[#261F3D] text-[10px] font-medium tracking-wider text-pastel-primary dark:text-[#A78BFA] uppercase shadow-sm">
+        {category}
+      </span>
+      <span class="px-2.5 py-1 rounded-[4px] bg-[#FFFFFF]/90 dark:bg-[#151028]/90 backdrop-blur-sm border border-[#E2DCED] dark:border-[#261F3D] text-[10px] font-light tracking-wider text-pastel-text-muted dark:text-[#8E86AB] shadow-sm">
+        {year}
+      </span>
+    </div>
+    
+    <!-- Arrow Action Button -->
+    <div class="absolute top-3.5 right-3.5 w-8 h-8 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] flex items-center justify-center text-pastel-text-title dark:text-[#F5F2FC] group-hover:bg-[#7C4DFF] group-hover:border-[#7C4DFF] group-hover:text-white transition-all duration-300 shadow-sm">
+      <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">arrow_outward</span>
+    </div>
+  </div>
+
+  <div class="p-6 flex justify-between items-end bg-[#FFFFFF] dark:bg-[#151028] transition-colors duration-200">
+    <div>
+      <h3 class="text-base sm:text-lg font-medium text-pastel-text-title dark:text-[#F5F2FC] group-hover:text-pastel-primary dark:group-hover:text-[#8F66FF] transition-colors tracking-tight mb-1">
+        {title}
+      </h3>
+      <p class="text-xs font-light text-pastel-text-muted dark:text-[#8E86AB]">
+        {category} &bull; Case Study
+      </p>
+    </div>
+    <div class="text-xs font-light tracking-widest text-pastel-text-light dark:text-[#554D70]">
+      {index}
+    </div>
+  </div>
+</a>

@@ -1,0 +1,192 @@
+---
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initGsapAnimations() {
+    // 1. Hero Content Entrance Timeline
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    const heroBadge = document.querySelector('.hero-badge');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroText = document.querySelector('.hero-text');
+    const heroBtns = document.querySelector('.hero-buttons');
+    const heroMetrics = document.querySelector('.hero-metrics');
+    const heroCanvas = document.querySelector('#hero-logo-canvas');
+
+    if (heroTitle) {
+      heroTimeline
+        .fromTo(heroBadge, 
+          { opacity: 0, y: -15 }, 
+          { opacity: 1, y: 0, duration: 0.6, delay: 0.1 }
+        )
+        .fromTo(heroTitle, 
+          { opacity: 0, y: 25 }, 
+          { opacity: 1, y: 0, duration: 0.8 }, 
+          "-=0.4"
+        )
+        .fromTo(heroText, 
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, duration: 0.7 }, 
+          "-=0.5"
+        )
+        .fromTo(heroBtns, 
+          { opacity: 0, y: 15, scale: 0.98 }, 
+          { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 
+          "-=0.4"
+        )
+        .fromTo(heroMetrics, 
+          { opacity: 0, y: 10 }, 
+          { opacity: 1, y: 0, duration: 0.6 }, 
+          "-=0.3"
+        );
+
+      if (heroCanvas) {
+        heroTimeline.fromTo(heroCanvas,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out' },
+          0.2
+        );
+      }
+    }
+
+    // 2. ScrollTrigger for Section Headers
+    const sectionHeaders = document.querySelectorAll('.gsap-section-header');
+    sectionHeaders.forEach((header) => {
+      gsap.fromTo(header,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+
+    // 3. Staggered ScrollTrigger for Project & Feature Cards
+    const cardGrids = document.querySelectorAll('.gsap-card-grid');
+    cardGrids.forEach((grid) => {
+      const cards = grid.querySelectorAll('.gsap-card');
+      if (cards.length > 0) {
+        gsap.fromTo(cards,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 82%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    });
+
+    // 4. Bento Box Grid Animation
+    const bentoItems = document.querySelectorAll('.gsap-bento-item');
+    if (bentoItems.length > 0) {
+      gsap.fromTo(bentoItems,
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: bentoItems[0],
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+
+    // 5. Stat Counters Animation
+    const statCards = document.querySelectorAll('.gsap-stat-card');
+    if (statCards.length > 0) {
+      gsap.fromTo(statCards,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: statCards[0],
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+
+    // 6. Generic Reveal Elements
+    const reveals = document.querySelectorAll('.gsap-reveal:not(.hero-badge):not(.hero-title)');
+    reveals.forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+
+    // 7. Micro-Interactions: Magnetic CTA Buttons
+    const magneticBtns = document.querySelectorAll('.gsap-magnetic');
+    magneticBtns.forEach((btn) => {
+      btn.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = (btn as HTMLElement).getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left - rect.width / 2;
+        const y = mouseEvent.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.25,
+          y: y * 0.25,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.4)'
+        });
+      });
+    });
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGsapAnimations);
+  } else {
+    initGsapAnimations();
+  }
+</script>

@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = [
+  {
+    index: "01",
+    title: "Nebula Engine",
+    category: "AI Product",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAm1kC8j57ukPdlbjurnyXAD9-DftegouRLdV4C9aWsn3-I0gO3G3NPOv-kSNwg5pznkR5Mj-cBtLo3ykubY0H44oAxruVNqoWdRYtoeRw4QzhrF6CNObo46gOx5hjZN3G7yJmCXLSr4jL80JalgROQXQFVqowmFhA03_CMZnZU0F9V2RMOgvJqv6OOfmJeD539N76Sap-3Cc3OcicdqWeHHXF7r0rHSzMSbLoo25ZgxF2vd1y_KHmaNw",
+    href: "/project-detail",
+    offset: false
+  },
+  {
+    index: "02",
+    title: "Echo Protocol",
+    category: "SaaS Platform",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAue_jGFNQuErsy2WD_4a5ptn9sRmrrEW-k85sZiDJFm9z2kTEecOvq3Ecs3EJ9r0WT-sz70n2XLwlilANeGVMVslZmle31UWLtXW-Y4KztG17TiCOphrf0wKt_rxNgI6tRWWTNMpYc0SEgh-C5MCbctlbGEFR_93avdOdOqOiRRrLYomEAkdPP2ciH5XAgJxQ50rh7Kw0YyKrCjcJk17ZppS5kQslpXjgtMCohBauknXlbuEfZBbXfWw",
+    href: "/project-detail",
+    offset: true
+  },
+  {
+    index: "03",
+    title: "Lumen Systems",
+    category: "Web App",
+    year: "2025",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCUIeVQ7LDmceTkQv2yLzvkpL66qT6AXp4ZjvZwferssalyWTgCllDv9hxAMzOhlMRh2hLFOGoWvZKubG9UmjnrbBhVX_18KW50ewBPSWHfN7yV_dhiX2aBcfKXXiMiC1myAcnq-5CEkpVneTyz7tQ_J1ieaoyR93A8X3Bp9yGajT3yNNNZHPxmwOUUOWS4-3avbb3sg865yXvOor9Tj98reTKWq1qV2QbN2k8fEYK5XJVbJC2uyil7Q",
+    href: "/project-detail",
+    offset: false
+  },
+  {
+    index: "04",
+    title: "Flow Creative",
+    category: "Brand & Web",
+    year: "2024",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBkqGJFSvOVPCpzVBBtelG7SwHb28_2VpQyumyqzOj3Sbk31n-GC_hJDUeV5tdsCzK5MZTwLW6dwex2H6lZgY4Pv9HdX-SRxqAL-1iloUw_yHq791IMQ14jezl635NG-J2Vk0Kblc2GLu53y_rPE2YwsHGYnPEF2iYTvgHjVoiOJrB5x5BxGXt6hpJalkYPlWWj8zYj22qBgjcm2C7ljgffDFzYDPn53jTIPbMFycWaoB8c90KKv0zzA3qxf6NFd6VshKo",
+    href: "/project-detail",
+    offset: true
+  }
+];
+
+const categories = ["All Projects", "AI Products", "SaaS Platforms", "Web Apps", "Brand & Design"];
+---
+
+<Layout title="Portfolio - Lowkeydevs" currentPage="portfolio">
+  <main class="flex-grow pt-28 md:pt-36 pb-24 px-6 sm:px-8 md:px-12 lg:px-16 relative z-10 w-full max-w-[1440px] mx-auto">
+    <!-- Header -->
+    <header class="mb-14 md:mb-18 max-w-3xl pt-4">
+      <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-xs font-normal text-pastel-text-title dark:text-[#F5F2FC] mb-5 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-[#7C4DFF]"></span>
+        <span class="tracking-widest uppercase text-[10px] text-pastel-primary dark:text-[#8F66FF] font-medium">Curated Portfolio</span>
+      </div>
+      <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-light text-pastel-text-title dark:text-[#F5F2FC] leading-[1.12] tracking-tight mb-5">
+        Crafting digital <br/><span class="font-normal text-[#7C4DFF] dark:text-[#8F66FF]">experiences</span>.
+      </h1>
+      <p class="hero-text text-sm sm:text-base font-light text-pastel-text-body dark:text-[#BDB6D4] max-w-2xl leading-relaxed">
+        A curated selection of our recent projects, spanning AI products, SaaS platforms, and digital brand experiences for ambitious companies.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap gap-2.5 pt-8">
+        {categories.map((cat, idx) => (
+          <button 
+            class={`px-4 py-2 rounded-[6px] text-xs font-medium transition-all duration-200 ${idx === 0 ? 'bg-[#7C4DFF] text-white shadow-pastel-sm' : 'bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-pastel-text-body dark:text-[#BDB6D4] hover:border-pastel-primary dark:hover:border-[#8F66FF] hover:text-pastel-primary dark:hover:text-[#8F66FF]'}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </header>
+
+    <!-- Project Grid -->
+    <div class="gsap-card-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </main>
+</Layout>

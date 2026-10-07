@@ -1,0 +1,122 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = 'home' } = Astro.props;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#F6F4F9]/90 dark:bg-[#0B0817]/90 backdrop-blur-md border-b border-[#E2DCED] dark:border-[#261F3D] transition-colors duration-200">
+  <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex justify-between items-center">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-2.5 cursor-pointer z-50 group">
+      <svg height="22" viewBox="0 0 200 150" width="29" xmlns="http://www.w3.org/2000/svg">
+        <path d="
+          M0 0
+          L80 0
+          L100 75
+          L120 150
+          L200 150
+          L180 75
+          L100 75
+          L20 75
+          Z
+        " fill="#7C4DFF"></path>
+      </svg>
+      <span class="font-normal text-lg tracking-tight text-pastel-text-title dark:text-[#F5F2FC] group-hover:text-pastel-primary dark:group-hover:text-[#8F66FF] transition-colors">lowkeydevs</span>
+    </a>
+    
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-light">
+      <a 
+        class={`transition-colors duration-200 relative ${currentPage === 'home' ? 'text-pastel-text-title dark:text-[#F5F2FC] font-medium after:content-[\'\'] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#7C4DFF] after:rounded-full' : 'text-pastel-text-body dark:text-[#BDB6D4] hover:text-pastel-primary dark:hover:text-[#8F66FF]'}`} 
+        href="/"
+      >
+        Home
+      </a>
+      <a 
+        class={`transition-colors duration-200 relative ${currentPage === 'portfolio' ? 'text-pastel-text-title dark:text-[#F5F2FC] font-medium after:content-[\'\'] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#7C4DFF] after:rounded-full' : 'text-pastel-text-body dark:text-[#BDB6D4] hover:text-pastel-primary dark:hover:text-[#8F66FF]'}`} 
+        href="/portfolio"
+      >
+        Portfolio
+      </a>
+      <a 
+        class={`transition-colors duration-200 relative ${currentPage === 'labs' ? 'text-pastel-text-title dark:text-[#F5F2FC] font-medium after:content-[\'\'] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#7C4DFF] after:rounded-full' : 'text-pastel-text-body dark:text-[#BDB6D4] hover:text-pastel-primary dark:hover:text-[#8F66FF]'}`} 
+        href="/labs"
+      >
+        Labs
+      </a>
+      <a 
+        class={`transition-colors duration-200 relative ${currentPage === 'contact' ? 'text-pastel-text-title dark:text-[#F5F2FC] font-medium after:content-[\'\'] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-[#7C4DFF] after:rounded-full' : 'text-pastel-text-body dark:text-[#BDB6D4] hover:text-pastel-primary dark:hover:text-[#8F66FF]'}`} 
+        href="/contact"
+      >
+        Contact
+      </a>
+    </nav>
+    
+    <!-- CTA Button & Theme Switcher -->
+    <div class="hidden md:flex items-center gap-3">
+      <!-- Theme Switcher -->
+      <ThemeToggle variant="dropdown" />
+
+      <!-- Contact Button -->
+      <a 
+        href="/contact" 
+        class="flex items-center gap-2 px-5 py-2 rounded-[6px] bg-[#FFFFFF] dark:bg-[#151028] border border-[#E2DCED] dark:border-[#261F3D] text-pastel-text-title dark:text-[#F5F2FC] hover:text-pastel-primary dark:hover:text-[#8F66FF] hover:border-pastel-primary dark:hover:border-[#8F66FF] hover:bg-pastel-primary-light dark:hover:bg-[#251D42] text-xs font-normal tracking-wide transition-all duration-200 group shadow-sm"
+      >
+        <span>Let's Build</span>
+        <span class="material-symbols-outlined text-[15px] group-hover:translate-x-0.5 transition-transform text-pastel-primary dark:text-[#8F66FF]">arrow_forward</span>
+      </a>
+    </div>
+    
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden flex items-center gap-2">
+      <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="text-pastel-text-title dark:text-[#F5F2FC] z-50 p-2 focus:outline-none rounded-md hover:bg-pastel-bg-subtle dark:hover:bg-[#1C1635]">
+        <span id="menu-icon" class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 bg-[#F6F4F9] dark:bg-[#0B0817] z-40 translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center px-8 space-y-6 text-xl font-light">
+    <a class={`transition-colors ${currentPage === 'home' ? 'text-pastel-primary font-medium' : 'text-pastel-text-title dark:text-[#F5F2FC] hover:text-pastel-primary'}`} href="/">Home</a>
+    <a class={`transition-colors ${currentPage === 'portfolio' ? 'text-pastel-primary font-medium' : 'text-pastel-text-title dark:text-[#F5F2FC] hover:text-pastel-primary'}`} href="/portfolio">Portfolio</a>
+    <a class={`transition-colors ${currentPage === 'labs' ? 'text-pastel-primary font-medium' : 'text-pastel-text-title dark:text-[#F5F2FC] hover:text-pastel-primary'}`} href="/labs">Labs</a>
+    <a class={`transition-colors ${currentPage === 'contact' ? 'text-pastel-primary font-medium' : 'text-pastel-text-title dark:text-[#F5F2FC] hover:text-pastel-primary'}`} href="/contact">Contact</a>
+    
+    <!-- Theme Switcher in Mobile Drawer -->
+    <div class="pt-4 border-t border-[#E2DCED] dark:border-[#261F3D] w-full max-w-xs">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-pastel-text-muted dark:text-[#7E7699] mb-2.5">
+        Theme
+      </div>
+      <ThemeToggle variant="inline" />
+    </div>
+
+    <a href="/contact" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-[6px] bg-[#7C4DFF] text-white w-fit text-sm font-normal mt-2 shadow-md">
+      <span>Let's Build</span>
+      <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileDrawer = document.getElementById('mobile-menu-drawer');
+  const menuIcon = document.getElementById('menu-icon');
+  let isOpen = false;
+
+  if (mobileBtn && mobileDrawer && menuIcon) {
+    mobileBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        mobileDrawer.classList.remove('translate-x-full');
+        menuIcon.textContent = 'close';
+      } else {
+        mobileDrawer.classList.add('translate-x-full');
+        menuIcon.textContent = 'menu';
+      }
+    });
+  }
+</script>
